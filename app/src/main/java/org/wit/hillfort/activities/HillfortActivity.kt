@@ -3,7 +3,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.wit.hillforts.R
+import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
