@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_hillfort.hillfortTitle
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     var hillfort = HillfortModel()
+    val hillforts = ArrayList<HillfortModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         info("Hillforts activity started...")
@@ -21,7 +22,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         btnAdd.setOnClickListener() {
             hillfort.title = hillfortTitle.text.toString()
             if(hillfort.title.isNotEmpty()){
+                hillforts.add(hillfort.copy())
                 info("Add button pressed: $hillfort")
+                for(i in hillforts.indices){
+                    info("Hillfort[$i]:${this.hillforts[i]}")
+                }
             }
             else{
                 toast("Please Enter a title")
