@@ -21,6 +21,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
         btnAdd.setOnClickListener() {
             hillfort.title = hillfortTitle.text.toString()
+            hillfort.description = description.text.toString()
+
             if(hillfort.title.isNotEmpty()){
                 hillforts.add(hillfort.copy())
                 info("Add button pressed: $hillfort")
