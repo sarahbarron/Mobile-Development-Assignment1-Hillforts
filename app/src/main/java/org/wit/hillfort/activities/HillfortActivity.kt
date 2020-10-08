@@ -8,11 +8,13 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortTitle
+import org.wit.hillfort.main.MainApp
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     var hillfort = HillfortModel()
-    val hillforts = ArrayList<HillfortModel>()
+//    val hillforts = ArrayList<HillfortModel>()
+    var app : MainApp? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         info("Hillforts activity started...")
@@ -24,10 +26,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.description = description.text.toString()
 
             if(hillfort.title.isNotEmpty()){
-                hillforts.add(hillfort.copy())
+                app!!.hillforts.add(hillfort.copy())
                 info("Add button pressed: $hillfort")
-                for(i in hillforts.indices){
-                    info("Hillfort[$i]:${this.hillforts[i]}")
+                for(i in app!!.hillforts.indices){
+                    info("Hillfort[$i]:${app!!.hillforts[i]}")
                 }
             }
             else{
