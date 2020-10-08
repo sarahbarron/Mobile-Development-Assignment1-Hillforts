@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">hillforts</string>
+    <string name="app_name">Hillforts</string>
     <string name="hint_hillfortName">Hillfort Name</string>
     <string name="hint_hillfortDescription">Hillfort Description</string>
     <string name="button_addHillfort">Save Hillfort</string>
+    <string name="menu_addHillfort">Add</string>
+    <string name="menu_cancelHillfort">Cancel</string>
 
 </resources>

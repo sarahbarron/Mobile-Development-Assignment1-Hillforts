@@ -1,4 +1,4 @@
-package org.wit.hillforts
+package org.wit.hillfort
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
