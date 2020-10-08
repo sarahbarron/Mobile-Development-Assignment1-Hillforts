@@ -1,6 +1,7 @@
 package org.wit.hillfort.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.wit.hillfort.R
@@ -17,10 +18,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app : MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         info("Hillforts activity started...")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
+        toolbarAdd.title=title
+        setSupportActionBar(toolbarAdd)
         app = application as MainApp
+
 
         btnAdd.setOnClickListener() {
             hillfort.title = hillfortTitle.text.toString()
@@ -42,5 +47,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_placemark, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
 }

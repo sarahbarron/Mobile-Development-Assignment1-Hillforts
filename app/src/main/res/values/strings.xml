@@ -4,5 +4,6 @@
     <string name="hint_hillfortDescription">Hillfort Description</string>
     <string name="button_addHillfort">Save Hillfort</string>
     <string name="menu_addHillfort">Add</string>
+    <string name="menu_cancelHillfort">Cancel</string>
 
 </resources>
