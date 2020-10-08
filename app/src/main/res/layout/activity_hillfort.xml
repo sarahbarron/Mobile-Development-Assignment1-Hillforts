@@ -41,7 +41,7 @@
 
 
                 <EditText
-                    android:id="@+id/placemarkTitle"
+                    android:id="@+id/hillfortTitle"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
