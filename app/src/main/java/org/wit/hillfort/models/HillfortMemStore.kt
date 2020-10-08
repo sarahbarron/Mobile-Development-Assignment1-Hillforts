@@ -1,8 +1,8 @@
 package org.wit.hillfort.models
-
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
-abstract class HillfortMemStore : HillfortStore, AnkoLogger {
+class HillfortMemStore : HillfortStore, AnkoLogger {
 
     val hillforts = ArrayList<HillfortModel>()
 
@@ -10,8 +10,8 @@ abstract class HillfortMemStore : HillfortStore, AnkoLogger {
         return hillforts
     }
 
-    override fun create(placemark: HillfortModel) {
-        hillforts.add(placemark)
+    override fun create(hillfort: HillfortModel) {
+        hillforts.add(hillfort)
         logAll()
     }
 
