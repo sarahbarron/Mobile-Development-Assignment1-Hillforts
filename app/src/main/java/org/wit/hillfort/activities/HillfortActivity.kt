@@ -13,7 +13,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
 
-
+        btnAdd.setOnClickListener() {
+            info("add Button Pressed")
+        }
     }
 
 
