@@ -33,18 +33,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfort.description = description.text.toString()
 
             if(hillfort.title.isNotEmpty()){
-                app.hillforts.add(hillfort.copy())
+                app.hillforts.create(hillfort.copy())
                 info("Add button pressed: $hillfort")
-                for(i in app.hillforts.indices){
-                    info("Hillfort[$i]:${app.hillforts[i]}")
-                }
                 setResult(AppCompatActivity.RESULT_OK)
                 finish()
             }
             else{
                 toast("Please Enter a title")
             }
-
         }
     }
 
