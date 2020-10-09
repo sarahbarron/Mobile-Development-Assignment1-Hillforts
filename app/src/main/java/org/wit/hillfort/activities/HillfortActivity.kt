@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
+import org.wit.hillfort.helpers.readImage
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 
@@ -82,13 +83,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         return super.onOptionsItemSelected(item)
     }
 
-//    When the activity picker activity finishes retrieve the images name
+//    When the activity picker activity finishes retrieve the images name & display it
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             IMAGE_REQUEST -> {
                 if (data != null) {
                     hillfort.image = data.getData().toString()
+                    placemarkImage.setImageBitmap(readImage(this, resultCode, data))
                 }
             }
         }
