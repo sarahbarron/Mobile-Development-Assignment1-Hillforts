@@ -10,13 +10,14 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
+import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     var hillfort = HillfortModel()
     var edit = false
-
+    val IMAGE_REQUEST = 1
     lateinit var app : MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
 
         chooseImage.setOnClickListener {
+            showImagePicker(this, IMAGE_REQUEST)
             info ("Select image")
         }
 
