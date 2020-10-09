@@ -37,6 +37,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             btnAdd.setText(R.string.save_hillfort)
         }
 
+        chooseImage.setOnClickListener {
+            info ("Select image")
+        }
+
         btnAdd.setOnClickListener() {
             hillfort.name = hillfortName.text.toString()
             info("Name: $hillfort.name")
