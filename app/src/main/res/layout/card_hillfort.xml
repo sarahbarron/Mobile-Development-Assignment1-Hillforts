@@ -12,7 +12,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/hillfortTitle"
+            android:id="@+id/hillfortName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -22,7 +22,7 @@
             android:id="@+id/hillfortDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/hillfortTitle" />
+            android:layout_below="@id/hillfortName" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -36,7 +36,7 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(hillfort: HillfortModel, listener: HillfortListener) {
-            itemView.hillfortTitle.text = hillfort.title
+            itemView.hillfortName.text = hillfort.name
             itemView.hillfortDescription.text = hillfort.description
             itemView.setOnClickListener{listener.onHillfortClick(hillfort)}
         }
