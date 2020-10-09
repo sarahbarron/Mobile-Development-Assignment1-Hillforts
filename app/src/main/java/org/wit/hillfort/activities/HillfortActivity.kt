@@ -9,12 +9,13 @@ import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
-import kotlinx.android.synthetic.main.activity_hillfort.hillfortTitle
+import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
 import org.wit.hillfort.main.MainApp
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     var hillfort = HillfortModel()
+    var edit = false
 
     lateinit var app : MainApp
 
@@ -25,22 +26,38 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_hillfort)
         toolbarAdd.title=title
         setSupportActionBar(toolbarAdd)
+
         app = application as MainApp
 
+        if (intent.hasExtra("hillfort_edit")) {
+            edit = true
+            hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
+            hillfortName.setText(hillfort.name)
+            hillfortDescription.setText(hillfort.description)
+            btnAdd.setText(R.string.save_hillfort)
+        }
 
         btnAdd.setOnClickListener() {
-            hillfort.title = hillfortTitle.text.toString()
-            hillfort.description = description.text.toString()
+            hillfort.name = hillfortName.text.toString()
+            info("Name: $hillfort.name")
+            hillfort.description = hillfortDescription.text.toString()
+            info("description : ${hillfort.description}")
+            if (hillfort.name.isNotEmpty()) {
 
-            if(hillfort.title.isNotEmpty()){
-                app.hillforts.create(hillfort.copy())
-                info("Add button pressed: $hillfort")
-                setResult(AppCompatActivity.RESULT_OK)
-                finish()
+                if (edit) {
+                    app.hillforts.update(hillfort.copy())
+                    info("Edit: $hillfort")
+                } else {
+                    app.hillforts.create(hillfort.copy())
+                    info("Create: $hillfort")
+                }
             }
             else{
-                toast("Please Enter a title")
+                toast(R.string.enter_hillfort_name)
             }
+            info("Add Button Pressed: $hillfortName")
+            setResult(AppCompatActivity.RESULT_OK)
+            finish()
         }
     }
 
@@ -57,5 +74,4 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
         return super.onOptionsItemSelected(item)
     }
-
 }
