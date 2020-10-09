@@ -1,8 +1,11 @@
 package org.wit.hillfort.helpers
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.provider.MediaStore
 import org.wit.hillfort.R
 import java.io.IOException
@@ -25,6 +28,22 @@ fun readImage(activity: Activity, resultCode: Int, data: Intent?): Bitmap? {
             bitmap = MediaStore.Images.Media.getBitmap(activity.contentResolver, data.data)
         } catch (e: IOException) {
             e.printStackTrace()
+        }
+    }
+    return bitmap
+}
+
+// Function needed when we want to edit a hillfort
+fun readImageFromPath(context: Context, path : String) : Bitmap? {
+    var bitmap : Bitmap? = null
+    val uri = Uri.parse(path)
+    if (uri != null) {
+        try {
+            val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
+            val fileDescriptor = parcelFileDescriptor?.getFileDescriptor()
+            bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+            parcelFileDescriptor?.close()
+        } catch (e: Exception) {
         }
     }
     return bitmap
