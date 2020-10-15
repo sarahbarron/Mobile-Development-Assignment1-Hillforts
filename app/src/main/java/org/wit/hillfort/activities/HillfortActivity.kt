@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
+import org.jetbrains.anko.intentFor
 import org.wit.hillfort.helpers.readImage
 import org.wit.hillfort.helpers.readImageFromPath
 import org.wit.hillfort.helpers.showImagePicker
@@ -74,7 +75,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
 
         hillfortLocation.setOnClickListener {
-            info ("Set Location Pressed")
+            startActivity (intentFor<MapActivity>())
         }
     }
 
