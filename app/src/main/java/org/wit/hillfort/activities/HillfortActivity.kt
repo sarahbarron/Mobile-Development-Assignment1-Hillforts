@@ -108,6 +108,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
                     chooseImage.setText(R.string.change_hillfort_image)
                 }
             }
+            LOCATION_REQUEST -> {
+                if (data != null) {
+                    location = data.extras?.getParcelable<Location>("location")!!
+                }
+            }
         }
     }
 }

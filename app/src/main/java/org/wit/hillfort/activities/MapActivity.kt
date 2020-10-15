@@ -8,11 +8,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.hillfort.R
 import org.wit.hillfort.models.Location
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerDragListener {
 
     private lateinit var map: GoogleMap
     var location = Location()
@@ -28,6 +29,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        map.setOnMarkerDragListener(this)
         val loc = LatLng(location.lat, location.lng)
         val options = MarkerOptions()
             .title("Hillfort")
@@ -36,5 +38,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             .position(loc)
         map.addMarker(options)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
+    }
+
+    override fun onMarkerDragStart(marker: Marker) {
+    }
+
+    override fun onMarkerDrag(marker: Marker) {
+    }
+
+    override fun onMarkerDragEnd(marker: Marker) {
+        location.lat = marker.position.latitude
+        location.lng = marker.position.longitude
+        location.zoom = map.cameraPosition.zoom
     }
 }
