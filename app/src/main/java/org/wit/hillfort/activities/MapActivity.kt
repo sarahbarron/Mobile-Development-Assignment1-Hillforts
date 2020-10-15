@@ -29,7 +29,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val loc = LatLng(location.lat, location.lng)
-        mMap.addMarker(MarkerOptions().position(loc).title("Default Marker"))
+        val options = MarkerOptions()
+            .title("Hillfort")
+            .snippet("GPS : " + loc.toString())
+            .draggable(true)
+            .position(loc)
+        mMap.addMarker(options)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
     }
 }
