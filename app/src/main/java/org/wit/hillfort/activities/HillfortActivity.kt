@@ -23,7 +23,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     var hillfort = HillfortModel()
     var edit = false
     val IMAGE_REQUEST = 1
+    val LOCATION_REQUEST = 2
+    var location = Location(52.245696, -7.139102, 15f)
     lateinit var app : MainApp
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -76,8 +79,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
 
         hillfortLocation.setOnClickListener {
-            val location = Location(51.245696, -6.139102, 15f)
-            startActivity (intentFor<MapActivity>().putExtra("location", location))
+            startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
         }
     }
 
