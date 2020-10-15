@@ -43,13 +43,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             if(hillfort.image != null){
                 chooseImage.setText(R.string.change_hillfort_image)
             }
-
         }
 
         chooseImage.setOnClickListener {
             info ("Select image")
             showImagePicker(this, IMAGE_REQUEST)
-
         }
 
         btnAdd.setOnClickListener() {
@@ -73,6 +71,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             info("Add Button Pressed: $hillfortName")
             setResult(AppCompatActivity.RESULT_OK)
             finish()
+        }
+
+        hillfortLocation.setOnClickListener {
+            info ("Set Location Pressed")
         }
     }
 
