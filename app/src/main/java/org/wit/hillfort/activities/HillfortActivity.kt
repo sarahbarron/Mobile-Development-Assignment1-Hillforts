@@ -1,4 +1,5 @@
 package org.wit.hillfort.activities
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,13 +11,16 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
+import org.wit.hillfort.helpers.readImage
+import org.wit.hillfort.helpers.readImageFromPath
+import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     var hillfort = HillfortModel()
     var edit = false
-
+    val IMAGE_REQUEST = 1
     lateinit var app : MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +39,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
+            hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+            if(hillfort.image != null){
+                chooseImage.setText(R.string.change_hillfort_image)
+            }
+
+        }
+
+        chooseImage.setOnClickListener {
+            info ("Select image")
+            showImagePicker(this, IMAGE_REQUEST)
+
         }
 
         btnAdd.setOnClickListener() {
@@ -73,5 +88,19 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+//    When the activity picker activity finishes retrieve the images name & display it
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            IMAGE_REQUEST -> {
+                if (data != null) {
+                    hillfort.image = data.getData().toString()
+                    hillfortImage.setImageBitmap(readImage(this, resultCode, data))
+                    chooseImage.setText(R.string.change_hillfort_image)
+                }
+            }
+        }
     }
 }
