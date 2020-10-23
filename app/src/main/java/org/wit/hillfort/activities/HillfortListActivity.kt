@@ -31,10 +31,10 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     }
 
     private fun loadHillforts() {
-        showPlacemarks(app.hillforts.findAll())
+        showHillforts(app.hillforts.findAll())
     }
 
-    fun showPlacemarks (hillforts: List<HillfortModel>) {
+    fun showHillforts (hillforts: List<HillfortModel>) {
         recyclerView.adapter = HillfortAdapter(hillforts, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
