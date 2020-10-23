@@ -78,7 +78,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
 
         hillfortLocation.setOnClickListener {
-//            If the location placemark object's zoom is not 0.0 use a default location
+//            If the location placemark object's zoom is 0.0 use a default location
             val location = Location(52.245696, -7.139102, 15f)
             if (hillfort.zoom != 0f) {
                 location.lat =  hillfort.lat
@@ -116,7 +116,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             }
             LOCATION_REQUEST -> {
                 if (data != null) {
-                    location = data.extras?.getParcelable<Location>("location")!!
+                    val location = data.extras?.getParcelable<Location>("location")!!
+                    hillfort.lat = location.lat
+                    hillfort.lng = location.lng
+                    hillfort.zoom = location.zoom
                 }
             }
         }
