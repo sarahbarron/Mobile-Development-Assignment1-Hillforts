@@ -52,5 +52,4 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
             itemView.setOnClickListener{listener.onHillfortClick(hillfort)}
         }
     }
-
 }

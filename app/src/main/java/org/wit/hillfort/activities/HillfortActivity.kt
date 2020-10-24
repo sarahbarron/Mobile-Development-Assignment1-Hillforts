@@ -139,7 +139,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         when (requestCode) {
             IMAGE_REQUEST -> {
                 if (data != null) {
-//                    new_hillfortImage.setImageBitmap(readImage(this, resultCode, data))
                     hillfort.images.add(data.getData().toString())
                     if(hillfort.images.size < 4) {
                         chooseImage.setText(R.string.add_four_hillfort_image)
