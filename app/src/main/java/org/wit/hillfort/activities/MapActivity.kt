@@ -4,14 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import com.google.android.gms.maps.*
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_hillfort.*
+import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.wit.hillfort.R
 import org.wit.hillfort.models.Location
 
@@ -30,10 +30,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarker
     }
 
 
+
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         map.setOnMarkerDragListener(this)
-
 
         val loc = LatLng(location.lat, location.lng)
         val options = MarkerOptions()
@@ -71,5 +71,4 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarker
         finish()
         super.onBackPressed()
     }
-
 }
