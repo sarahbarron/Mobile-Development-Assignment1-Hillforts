@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 data class HillfortModel(var id: Long = 0,
                          var name: String = "",
                          var description: String="",
-                         var image: String="",
+                         var images: ArrayList<String> = ArrayList<String>(),
                          var lat: Double = 0.0,
                          var lng: Double = 0.0,
                          var zoom: Float = 0f
@@ -16,3 +16,4 @@ data class HillfortModel(var id: Long = 0,
 data class Location(var lat: Double = 0.0,
                     var lng: Double = 0.0,
                     var zoom: Float = 0f) : Parcelable
+
