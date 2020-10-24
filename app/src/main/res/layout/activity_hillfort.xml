@@ -79,8 +79,8 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
-                <!--                <ImageView-->
-<!--                    android:id="@+id/hillfortImage"-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/new_hillfortImage"-->
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    app:srcCompat="@mipmap/ic_launcher" />-->

@@ -16,6 +16,7 @@ import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.intentFor
+import org.wit.hillfort.helpers.readImage
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
@@ -51,21 +52,26 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfortDescription.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
             if (hillfort.images.size > 0 && hillfort.images != null) {
-
-
-//            for (i in hillfort.images.indices) {
-//                hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.images[i]))
-//            }
                 showImages(hillfort.images)
-            }
-            if(hillfort.images != null){
-                chooseImage.setText(R.string.change_hillfort_image)
+                if(hillfort.images.size<4)
+                {
+                    chooseImage.setText(R.string.add_four_hillfort_image)
+                }
+                else{
+                    chooseImage.setText(R.string.max_hillfort_images)
+                }
             }
         }
 
         chooseImage.setOnClickListener {
             info ("Select image")
-            showImagePicker(this, IMAGE_REQUEST)
+            if(hillfort.images.size<4) {
+                showImagePicker(this, IMAGE_REQUEST)
+            }
+            else
+            {
+                toast("Maximum number of images already saved")
+            }
         }
 
         btnAdd.setOnClickListener() {
@@ -133,9 +139,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         when (requestCode) {
             IMAGE_REQUEST -> {
                 if (data != null) {
+//                    new_hillfortImage.setImageBitmap(readImage(this, resultCode, data))
                     hillfort.images.add(data.getData().toString())
-//                    hillfortImage.setImageBitmap(readImage(this, resultCode, data))
-                    chooseImage.setText(R.string.change_hillfort_image)
+                    if(hillfort.images.size < 4) {
+                        chooseImage.setText(R.string.add_four_hillfort_image)
+                    }
+                    else{
+                        chooseImage.setText(R.string.max_hillfort_images)
+                    }
+                    showImages(hillfort.images)
                 }
             }
             LOCATION_REQUEST -> {
