@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.wit.hillfort.R
@@ -11,9 +14,8 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
+import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.intentFor
-import org.wit.hillfort.helpers.readImage
-import org.wit.hillfort.helpers.readImageFromPath
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
@@ -37,14 +39,24 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
         app = application as MainApp
 
+        //        Create a Linear layout manager & tell the recyclerView to use this layout manager
+        val layoutManager = LinearLayoutManager(this)
+        recyclerViewImages.layoutManager = layoutManager
+
+
         if (intent.hasExtra("hillfort_edit")) {
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
-            for (i in hillfort.images.indices) {
-                hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.images[i]))
+            if (hillfort.images.size > 0 && hillfort.images != null) {
+
+
+//            for (i in hillfort.images.indices) {
+//                hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.images[i]))
+//            }
+                showImages(hillfort.images)
             }
             if(hillfort.images != null){
                 chooseImage.setText(R.string.change_hillfort_image)
@@ -91,6 +103,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
+
+    fun showImages (images: ArrayList<String>) {
+        recyclerViewImages.adapter = ImageAdapter(images)
+        recyclerViewImages.adapter?.notifyDataSetChanged()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_hillfort, menu)
         return super.onCreateOptionsMenu(menu)
@@ -116,7 +134,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             IMAGE_REQUEST -> {
                 if (data != null) {
                     hillfort.images.add(data.getData().toString())
-                    hillfortImage.setImageBitmap(readImage(this, resultCode, data))
+//                    hillfortImage.setImageBitmap(readImage(this, resultCode, data))
                     chooseImage.setText(R.string.change_hillfort_image)
                 }
             }
