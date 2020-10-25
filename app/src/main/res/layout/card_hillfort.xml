@@ -35,5 +35,13 @@
             android:layout_below="@id/hillfortName"
             android:layout_toEndOf="@+id/imageIcon"
             />
+        <CheckBox
+            android:id="@+id/visitedCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@+id/hillfortName" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
