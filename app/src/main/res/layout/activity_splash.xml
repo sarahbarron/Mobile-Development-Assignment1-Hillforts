@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="org.wit.hillfort.activities.SplashActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="@color/colorAccent"
         android:fitsSystemWindows="true"
         tools:layout_editor_absoluteX="-142dp"
         tools:layout_editor_absoluteY="0dp">
@@ -23,14 +24,15 @@
             android:maxLength="25"
             android:maxLines="1"
             android:padding="8dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/hillfort"></androidx.appcompat.widget.AppCompatImageView>
+            android:src="@drawable/hillfort"
+            ></androidx.appcompat.widget.AppCompatImageView>
 
 
     </RelativeLayout>
