@@ -36,7 +36,7 @@
             android:layout_toEndOf="@+id/imageIcon"
             />
         <CheckBox
-            android:id="@+id/visitedCheckbox"
+            android:id="@+id/visitedCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="7dp"
