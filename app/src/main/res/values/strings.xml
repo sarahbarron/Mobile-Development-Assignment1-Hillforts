@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Hillforts</string>
-<<<<<<< HEAD
     <string name="archaeological_fieldwork">Archaeological Fieldwork</string>
     <string name="hint_hillfortName">Hillfort Name</string>
     <string name="hint_hillfortDescription">Hillfort Description</string>
@@ -17,9 +16,4 @@
     <string name="button_location">Set Location</string>
     <string name="title_activity_map">Map</string>
     <string name ="menu_deleteHillfort">Delete</string>
-
-=======
-    <string name="hillfort_name">Hillfort Name</string>
-    <string name="button_addHillfort">Add Hillfort</string>
->>>>>>> feature/styles-and-layout
 </resources>

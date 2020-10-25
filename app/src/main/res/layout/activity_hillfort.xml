@@ -4,13 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context="org.wit.hillfort.activities.HillfortActivity">
 
-=======
-    tools:context=".HillfortActivity">
-<!-- Relative layout -->
->>>>>>> feature/styles-and-layout
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,50 +27,34 @@
                 android:layout_height="wrap_content"
                 app:titleTextColor="@color/colorPrimary" />
         </com.google.android.material.appbar.AppBarLayout>
-<<<<<<< HEAD
 
-=======
-<!-- Scroll view linear -->
->>>>>>> feature/styles-and-layout
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/appBarLayout"
-<<<<<<< HEAD
             android:layout_marginTop="41dp"
-=======
->>>>>>> feature/styles-and-layout
             android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-<<<<<<< HEAD
+
 
                 <EditText
                     android:id="@+id/hillfortName"
-=======
-<!-- Hillfort Name text area-->
-                <EditText
-                    android:id="@+id/placemarkTitle"
->>>>>>> feature/styles-and-layout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints=""
-<<<<<<< HEAD
                     android:hint="@string/hint_hillfortName"
-=======
-                    android:hint="@string/hillfort_name"
->>>>>>> feature/styles-and-layout
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
-<<<<<<< HEAD
+
 
                 <EditText
                     android:id="@+id/hillfortDescription"
@@ -124,7 +103,7 @@
 
 =======
 <!-- Button to add a hillfort-->
->>>>>>> feature/styles-and-layout
+
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
@@ -137,15 +116,10 @@
                     android:text="@string/button_addHillfort"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
-<<<<<<< HEAD
 
             </LinearLayout>
         </ScrollView>
-=======
-            </LinearLayout>
-        </ScrollView>
 
->>>>>>> feature/styles-and-layout
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
