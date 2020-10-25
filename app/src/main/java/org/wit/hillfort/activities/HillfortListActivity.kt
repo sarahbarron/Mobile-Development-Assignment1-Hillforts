@@ -27,9 +27,17 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
+        loadHillforts()
     }
 
+    private fun loadHillforts() {
+        showHillforts(app.hillforts.findAll())
+    }
+
+    fun showHillforts (hillforts: List<HillfortModel>) {
+        recyclerView.adapter = HillfortAdapter(hillforts, this)
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -47,7 +55,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     }
 //    Refreshes the view when a hillfort is updated
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        recyclerView.adapter?.notifyDataSetChanged()
+        loadHillforts()
         super.onActivityResult(requestCode, resultCode, data)
     }
 }
