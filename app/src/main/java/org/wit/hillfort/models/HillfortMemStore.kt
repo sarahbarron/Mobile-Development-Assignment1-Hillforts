@@ -33,6 +33,13 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
             logAll()
         }
     }
+    override fun visited(hillfort: HillfortModel, boolean: Boolean){
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        if(foundHillfort !=null) {
+            foundHillfort.visited = boolean
+
+        }
+    }
 
     override fun delete(hillfort: HillfortModel){
         hillforts.remove(hillfort)

@@ -3,6 +3,7 @@ package org.wit.hillfort.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
@@ -58,6 +59,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         loadHillforts()
         super.onActivityResult(requestCode, resultCode, data)
     }
+
 }
 
 
