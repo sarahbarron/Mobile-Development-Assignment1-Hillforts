@@ -17,13 +17,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
-<!--       List of hillforts activity-->
-        <activity android:name=".activities.HillfortListActivity">
+<!--        Splash Screen-->
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+<!--       List of hillforts activity-->
+        <activity android:name=".activities.HillfortListActivity">
         </activity>
 
 <!--        Single hillfort activity-->
