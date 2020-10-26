@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.CheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -58,6 +60,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
                     chooseImage.setText(R.string.max_hillfort_images)
                 }
             }
+
+            if (hillfort.visited){
+                visitedHillfort.isChecked = true
+            }
         }
 
         chooseImage.setOnClickListener {
@@ -105,6 +111,23 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
         }
     }
+
+    fun onCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+
+            when (view.id) {
+                R.id.visitedHillfort -> {
+                    if (checked) {
+                        app.hillforts.visited(hillfort, true)
+                    } else {
+                        app.hillforts.visited(hillfort, false)
+                    }
+                }
+            }
+        }
+    }
+
 
 
     fun showImages (images: ArrayList<String>) {
