@@ -3,20 +3,24 @@ package org.wit.hillfort.activities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.card_hillfort.view.*
 import org.wit.hillfort.R
 import org.wit.hillfort.helpers.readImageFromPath
+import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
 
 interface HillfortListener {
-    fun onHillfortClick(placemark: HillfortModel)
+    fun onHillfortClick(hillfort: HillfortModel)
+    fun onVisitedCheckboxClick(hillfort: HillfortModel, isChecked: Boolean)
 }
 
 class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
                                     private val listener: HillfortListener) :
     RecyclerView.Adapter<HillfortAdapter.MainHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         return MainHolder(
@@ -54,6 +58,9 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
             }
 //
             itemView.setOnClickListener{listener.onHillfortClick(hillfort)}
+            itemView.visitedCard.setOnClickListener{listener.onVisitedCheckboxClick(hillfort, itemView.visitedCard.isChecked)}
         }
     }
+
+
 }
