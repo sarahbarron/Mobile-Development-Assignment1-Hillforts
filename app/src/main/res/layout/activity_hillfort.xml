@@ -55,12 +55,6 @@
                     android:padding="5px"
                     android:textAlignment="center"
                     />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewImages"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="vertical"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                 <EditText
                     android:id="@+id/hillfortName"
@@ -92,19 +86,6 @@
 
 
                 <Button
-                    android:id="@+id/chooseImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/colorAccent"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:text="@string/button_addImage"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
-
-
-                <Button
                     android:id="@+id/hillfortLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -117,7 +98,24 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"/>
 
+                <Button
+                    android:id="@+id/chooseImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/colorAccent"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/button_addImage"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewImages"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
@@ -143,6 +141,7 @@
                     android:textColor="@color/colorAccent"
                     android:onClick="onCheckboxClicked"
                     />
+
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

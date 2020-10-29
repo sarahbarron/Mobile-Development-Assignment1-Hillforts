@@ -39,12 +39,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
         app = application as MainApp
 
-        //        Create a Linear layout manager & tell the recyclerView to use this layout manager
+
         val layoutManager = LinearLayoutManager(this)
         recyclerViewImages.layoutManager = layoutManager
 
 
         if (intent.hasExtra("hillfort_edit")) {
+            //        Create a Linear layout manager & tell the recyclerView to use this layout manager
+
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
 
