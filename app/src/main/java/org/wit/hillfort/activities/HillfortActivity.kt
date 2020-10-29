@@ -47,6 +47,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         if (intent.hasExtra("hillfort_edit")) {
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
+
+            headingHillfortName.setText(hillfort.name)
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
@@ -64,6 +66,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             if (hillfort.visited){
                 visitedHillfort.isChecked = true
             }
+
         }
 
         chooseImage.setOnClickListener {
