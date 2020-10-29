@@ -18,8 +18,9 @@ import org.jetbrains.anko.intentFor
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
+import org.wit.hillfort.activities.ImageListener
 
-class HillfortActivity : AppCompatActivity(), AnkoLogger {
+class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
     var hillfort = HillfortModel()
     var edit = false
@@ -136,7 +137,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
 
     fun showImages (images: ArrayList<String>) {
-        recyclerViewImages.adapter = ImageAdapter(images)
+        recyclerViewImages.adapter = ImageAdapter(images, this)
         recyclerViewImages.adapter?.notifyDataSetChanged()
     }
 
@@ -183,5 +184,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
                 }
             }
         }
+    }
+
+
+
+    override fun onImageClick(image: String){
+        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image), 0)
     }
 }

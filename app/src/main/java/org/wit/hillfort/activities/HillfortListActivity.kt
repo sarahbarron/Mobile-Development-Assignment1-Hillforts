@@ -3,10 +3,8 @@ package org.wit.hillfort.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_hillfort.view.*
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
