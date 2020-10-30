@@ -14,11 +14,20 @@
     <string name="max_hillfort_images">Maximum Images Added</string>
     <string name="button_location">Set Location</string>
     <string name="title_activity_map">Map</string>
-    <string name ="menu_deleteHillfort">Delete</string>
+    <string name="menu_deleteHillfort">Delete</string>
     <string name="hillfort_name">Hillfort Name</string>
     <string name="button_addHillfort">Add Hillfort</string>
     <string name="visited_checkbox">Visted Hillfort</string>
     <string name="button_delete_image">Delete Image</string>
     <string name="heading_hillfort_name">New Hillfort</string>
     <string name="menu_hillfort_image">Hillfort Image</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

@@ -12,40 +12,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <!--        Splash Screen-->
+            android:value="@string/google_maps_key" /> <!-- Splash Screen -->
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--       List of hillforts activity-->
-        <activity android:name=".activities.HillfortListActivity">
-        </activity>
-
-        <!--        Single hillfort activity-->
+        </activity> <!-- List of hillforts activity -->
+        <activity android:name=".activities.HillfortListActivity"></activity> <!-- Single hillfort activity -->
         <activity
             android:name=".activities.HillfortActivity"
-            android:parentActivityName=".activities.HillfortListActivity">
-        </activity>
-
-        <!--        Map activity -->
+            android:parentActivityName=".activities.HillfortListActivity"></activity> <!-- Map activity -->
         <activity
             android:name=".activities.MapActivity"
             android:label="@string/title_activity_map"
-            android:parentActivityName=".activities.HillfortActivity">
-        </activity>
+            android:parentActivityName=".activities.HillfortActivity"></activity>
         <activity
             android:name=".activities.ImageActivity"
-            android:parentActivityName=".activities.HillfortActivity">
-        </activity>
-
+            android:parentActivityName=".activities.HillfortActivity"></activity>
     </application>
 
 </manifest>
