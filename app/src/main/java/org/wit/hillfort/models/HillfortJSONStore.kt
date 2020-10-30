@@ -83,10 +83,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     override fun deleteImage(hillfort: HillfortModel, image: String) {
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
         foundHillfort?.images?.remove(image)
-        info("Image Deleted: "+image)
         serialize()
-        foundHillfort = hillforts.find { p -> p.id == hillfort.id }
-        info("New Hillfort Images"+foundHillfort?.images)
     }
 
     // Serialize / write data to the JSON file

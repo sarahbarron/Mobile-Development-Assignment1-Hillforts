@@ -15,8 +15,12 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         return hillforts
     }
 
-    override fun findOne(hillfort: HillfortModel): HillfortModel {
-        TODO("Not yet implemented")
+    override fun findOne(hillfort: HillfortModel): HillfortModel{
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        if (foundHillfort != null) {
+            return foundHillfort
+        }
+        return hillfort
     }
 
     override fun create(hillfort: HillfortModel) {
@@ -53,7 +57,8 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         hillforts.forEach{ info("${it}") }
     }
 
-    override fun deleteImage(hillfort: HillfortModel,image: String) {
-        TODO("Not yet implemented")
+    override fun deleteImage(hillfort: HillfortModel, image: String) {
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        foundHillfort?.images?.remove(image)
     }
 }
