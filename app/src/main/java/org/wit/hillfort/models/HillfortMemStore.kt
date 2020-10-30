@@ -48,4 +48,8 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
     fun logAll() {
         hillforts.forEach{ info("${it}") }
     }
+
+    override fun deleteImage(hillfort: HillfortModel,image: String) {
+        TODO("Not yet implemented")
+    }
 }

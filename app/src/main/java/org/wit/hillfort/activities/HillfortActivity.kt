@@ -26,6 +26,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
     var edit = false
     val IMAGE_REQUEST = 1
     val LOCATION_REQUEST = 2
+    val DELETE_IMAGE = 3
     lateinit var app : MainApp
 
 
@@ -55,6 +56,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
+            showImages(hillfort.images)
             if (hillfort.images.size > 0 && hillfort.images != null) {
                 showImages(hillfort.images)
                 if(hillfort.images.size<4)
@@ -159,8 +161,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         return super.onOptionsItemSelected(item)
     }
 
-//    When the activity picker activity finishes retrieve the images name & display it
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        showImages(hillfort.images)
+        info("Hillfort images"+hillfort.images)
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             IMAGE_REQUEST -> {
@@ -187,8 +192,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
     }
 
 
-
     override fun onImageClick(image: String){
-        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image), 0)
+        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort),0)
     }
 }
+
+
