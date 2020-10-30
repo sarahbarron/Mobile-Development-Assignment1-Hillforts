@@ -6,12 +6,13 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.wit.hillfort.helpers.*
 import java.util.*
 
-val USER_JSON = "hillforts.json"
-val USER_Gson = GsonBuilder().setPrettyPrinting().create()
-val USER_list = object : TypeToken<java.util.ArrayList<UserModel>>() {}.type
+val USER_JSON_FILE = "users.json"
+val Gson = GsonBuilder().setPrettyPrinting().create()
+val USER_lIST_TYPE = object : TypeToken<java.util.ArrayList<UserModel>>() {}.type
 
 // Generate a random ID for each hillfort
 fun generateRandomUserId(): Long {
@@ -27,8 +28,8 @@ class UserJSONStore : UserStore, AnkoLogger {
     //    Constructor checks if the file exists if it does it deserializes it
     constructor (context: Context) {
         this.context = context
-        if (exists(context, USER_JSON)) {
-            deserialize()
+        if (exists(context, USER_JSON_FILE)) {
+            userDeserialize()
         }
     }
 
@@ -48,9 +49,10 @@ class UserJSONStore : UserStore, AnkoLogger {
 
     //    Create a user
     override fun create(user: UserModel) {
-        user.id = generateRandomId()
+        user.id = generateRandomUserId()
         users.add(user)
-        serialize()
+        userSerialize()
+        info("user saved")
     }
 
     // Update a user
@@ -60,30 +62,37 @@ class UserJSONStore : UserStore, AnkoLogger {
         if (foundUser != null) {
             foundUser.username = user.username
             foundUser.password = user.password
-            serialize()
+            userSerialize()
         }
     }
 
 
     override fun delete(user: UserModel) {
         users.remove(user)
-        serialize()
+        userSerialize()
     }
 
-    override fun authenticate(username: String, password: String) {
-        TODO("Not yet implemented")
+    override fun authenticate(user: UserModel):Boolean {
+        var foundUser: UserModel? = users.find{ p -> p.username == user.username }
+        if(foundUser != null) {
+            if (foundUser.password == user.password) {
+                return true
+            }
+        }
+        return false
     }
 
 
     // Serialize / write data to the JSON file
-    private fun serialize() {
-        val jsonString = USER_Gson.toJson(users, USER_list)
-        write(context, USER_JSON, jsonString)
+    private fun userSerialize() {
+        val jsonString = Gson.toJson(users, USER_lIST_TYPE)
+        write(context, USER_JSON_FILE, jsonString)
+        info("userSerialize")
     }
 
     //    deserialize / read data from the JSON file
-    private fun deserialize() {
-        val jsonString = read(context, USER_JSON)
-        users = Gson().fromJson(jsonString, USER_list)
+    private fun userDeserialize() {
+        val jsonString = read(context, USER_JSON_FILE)
+        users = Gson().fromJson(jsonString, USER_lIST_TYPE)
     }
 }

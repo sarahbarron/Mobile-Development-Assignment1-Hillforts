@@ -5,6 +5,6 @@ interface UserStore {
     fun findOne(user: UserModel): UserModel
     fun create(user: UserModel)
     fun delete(user: UserModel)
-    fun authenticate(username: String, password: String)
+    fun authenticate(user: UserModel): Boolean
     fun update(user: UserModel)
 }
