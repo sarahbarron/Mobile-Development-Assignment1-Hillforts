@@ -15,6 +15,10 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         return hillforts
     }
 
+    override fun findOne(hillfort: HillfortModel): HillfortModel {
+        TODO("Not yet implemented")
+    }
+
     override fun create(hillfort: HillfortModel) {
         hillfort.id = getId()
         hillforts.add(hillfort)

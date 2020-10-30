@@ -37,6 +37,13 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         return hillforts
     }
 
+    override fun findOne(hillfort: HillfortModel): HillfortModel{
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        if (foundHillfort != null) {
+            return foundHillfort
+        }
+        return hillfort
+    }
     //    Create a hillfort
     override fun create(hillfort: HillfortModel) {
         hillfort.id = generateRandomId()

@@ -56,17 +56,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
-            showImages(hillfort.images)
-            if (hillfort.images.size > 0 && hillfort.images != null) {
-                showImages(hillfort.images)
-                if(hillfort.images.size<4)
-                {
-                    chooseImage.setText(R.string.add_four_hillfort_image)
-                }
-                else{
-                    chooseImage.setText(R.string.max_hillfort_images)
-                }
-            }
+            loadHillfort()
 
             if (hillfort.visited){
                 visitedHillfort.isChecked = true
@@ -136,11 +126,27 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         }
     }
 
+//    retrieve the current hillfort from the JSON file
+    fun loadHillfort(){
+        hillfort = app.hillforts.findOne(hillfort.copy())
+        showImages(hillfort.images)
+    }
 
-
+//    Show the current images
     fun showImages (images: ArrayList<String>) {
+//        recycler View
         recyclerViewImages.adapter = ImageAdapter(images, this)
         recyclerViewImages.adapter?.notifyDataSetChanged()
+//        set the text on the add images button
+        if (hillfort.images.size > 0 && hillfort.images != null) {
+            if(hillfort.images.size<4)
+            {
+                chooseImage.setText(R.string.add_four_hillfort_image)
+            }
+            else{
+                chooseImage.setText(R.string.max_hillfort_images)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -163,10 +169,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        showImages(hillfort.images)
-        info("Hillfort images"+hillfort.images)
-        super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             IMAGE_REQUEST -> {
                 if (data != null) {
@@ -177,7 +179,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                     else{
                         chooseImage.setText(R.string.max_hillfort_images)
                     }
-                    showImages(hillfort.images)
+                    loadHillfort()
                 }
             }
             LOCATION_REQUEST -> {
@@ -188,12 +190,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                     hillfort.zoom = location.zoom
                 }
             }
+            DELETE_IMAGE->{
+                loadHillfort()
+            }
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 
     override fun onImageClick(image: String){
-        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort),0)
+        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort),DELETE_IMAGE)
     }
 }
 

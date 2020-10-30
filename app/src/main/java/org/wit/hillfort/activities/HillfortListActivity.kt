@@ -75,5 +75,3 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
     }
 
 }
-
-

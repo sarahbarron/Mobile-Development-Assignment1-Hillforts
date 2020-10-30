@@ -38,7 +38,6 @@ class ImageActivity: AppCompatActivity(), AnkoLogger {
 
            btnImageDelete.setOnClickListener(){
                 app.hillforts.deleteImage(hillfort.copy(), image)
-                setResult(3)
                 finish()
            }
        }
