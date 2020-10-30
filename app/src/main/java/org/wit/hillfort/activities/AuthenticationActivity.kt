@@ -48,10 +48,8 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
                 }
                 else
                 {
-                    info("creating user")
-                    app.users.create(user)
-                    startActivityForResult(intentFor<HillfortListActivity>().putExtra("user", user),0)
-//                    toast("Your username or password is incorrect please try again")
+                    info("authentication failed")
+                    toast("Your username or password is incorrect please try again")
                 }
             }
         }
