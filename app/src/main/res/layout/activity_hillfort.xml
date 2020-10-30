@@ -28,15 +28,12 @@
                 app:titleTextColor="@color/colorPrimary" />
         </com.google.android.material.appbar.AppBarLayout>
 
-<!-- Scroll view linear -->
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/appBarLayout"
-
             android:layout_marginTop="41dp"
-
             android:fillViewport="true">
 
             <LinearLayout
@@ -44,21 +41,32 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
+                <TextView
+                    android:id="@+id/headingHillfortName"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/heading_hillfort_name"
+                    android:background="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp"
+                    android:padding="5px"
+                    android:textAlignment="center"
+                    />
+
                 <EditText
                     android:id="@+id/hillfortName"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints=""
-
                     android:hint="@string/hint_hillfortName"
-
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp" />
+                    android:textSize="20sp" />
 
 
                 <EditText
@@ -68,11 +76,25 @@
                     android:layout_margin="8dp"
                     android:hint="@string/hint_hillfortDescription"
                     android:inputType="text"
-                    android:maxLength="25"
+                    android:maxLength="50"
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp" />
+                    android:textSize="20sp" />
+
+
+                <Button
+                    android:id="@+id/hillfortLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/colorAccent"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/button_location"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"/>
 
                 <Button
                     android:id="@+id/chooseImage"
@@ -92,23 +114,6 @@
                     android:layout_height="match_parent"
                     android:scrollbars="vertical"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-                <Button
-                    android:id="@+id/hillfortLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/colorAccent"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:stateListAnimator="@null"
-                    android:text="@string/button_location"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"/>
-
-=======
-<!-- Button to add a hillfort-->
-
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
@@ -133,7 +138,8 @@
                     android:textSize="25sp"
                     android:textColor="@color/colorAccent"
                     android:onClick="onCheckboxClicked"
-                     />
+                    />
+
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

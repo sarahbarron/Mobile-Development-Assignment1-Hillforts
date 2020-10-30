@@ -6,4 +6,6 @@ interface HillfortStore {
     fun update(hillfort: HillfortModel)
     fun delete(hillfort: HillfortModel)
     fun visited(hillfort: HillfortModel, boolean: Boolean)
+    fun deleteImage(hillfort: HillfortModel, image: String)
+    fun findOne(hillfort: HillfortModel): HillfortModel
 }

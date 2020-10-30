@@ -15,6 +15,10 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         return hillforts
     }
 
+    override fun findOne(hillfort: HillfortModel): HillfortModel {
+        TODO("Not yet implemented")
+    }
+
     override fun create(hillfort: HillfortModel) {
         hillfort.id = getId()
         hillforts.add(hillfort)
@@ -47,5 +51,9 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
 
     fun logAll() {
         hillforts.forEach{ info("${it}") }
+    }
+
+    override fun deleteImage(hillfort: HillfortModel,image: String) {
+        TODO("Not yet implemented")
     }
 }

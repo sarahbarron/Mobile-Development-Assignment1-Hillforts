@@ -4,15 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_hillfort.view.*
-import kotlinx.android.synthetic.main.card_hillfort.view.*
 import kotlinx.android.synthetic.main.card_image.view.*
 import org.wit.hillfort.R
 import org.wit.hillfort.helpers.readImageFromPath
 
 
+interface ImageListener{
+    fun onImageClick(image: String)
+}
 
-class ImageAdapter constructor(private var images: ArrayList<String>) :
+class ImageAdapter(private var images: ArrayList<String>,
+                   private val listener: ImageListener
+) :
 
     RecyclerView.Adapter<ImageAdapter.MainHolder>() {
 
@@ -30,7 +33,7 @@ class ImageAdapter constructor(private var images: ArrayList<String>) :
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val image = images[holder.adapterPosition]
-        holder.bind(image)
+        holder.bind(image, listener)
     }
 
 
@@ -39,7 +42,7 @@ class ImageAdapter constructor(private var images: ArrayList<String>) :
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(image: String) {
+        fun bind(image: String, listener: ImageListener) {
 
             itemView.hillfortImage.setImageBitmap(
                 readImageFromPath(
@@ -47,6 +50,8 @@ class ImageAdapter constructor(private var images: ArrayList<String>) :
                     image
                 )
             )
+            itemView.setOnClickListener{listener.onImageClick(image)}
         }
+
     }
 }

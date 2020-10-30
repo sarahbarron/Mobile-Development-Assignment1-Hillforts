@@ -41,6 +41,11 @@
             android:label="@string/title_activity_map"
             android:parentActivityName=".activities.HillfortActivity">
         </activity>
+        <activity
+            android:name=".activities.ImageActivity"
+            android:parentActivityName=".activities.HillfortActivity">
+        </activity>
+
     </application>
 
 </manifest>

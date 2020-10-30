@@ -18,4 +18,6 @@
     <string name="hillfort_name">Hillfort Name</string>
     <string name="button_addHillfort">Add Hillfort</string>
     <string name="visited_checkbox">Visted Hillfort</string>
+    <string name="button_delete_image">Delete Image</string>
+    <string name="heading_hillfort_name">New Hillfort</string>
 </resources>
