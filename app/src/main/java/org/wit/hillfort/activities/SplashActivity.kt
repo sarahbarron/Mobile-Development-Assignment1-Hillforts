@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_splash)
         Handler().postDelayed(
             {
-                startActivity(Intent(this, HillfortListActivity::class.java))
+                startActivity(Intent(this, AuthenticationActivity::class.java))
                 // Animate the loading of new activity
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 finish()

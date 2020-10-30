@@ -21,10 +21,10 @@
     <string name="button_delete_image">Delete Image</string>
     <string name="heading_hillfort_name">New Hillfort</string>
     <string name="menu_hillfort_image">Hillfort Image</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">AuthenticationActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Login/Register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>

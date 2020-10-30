@@ -18,7 +18,7 @@ import org.jetbrains.anko.intentFor
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
-import org.wit.hillfort.activities.ImageListener
+
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
