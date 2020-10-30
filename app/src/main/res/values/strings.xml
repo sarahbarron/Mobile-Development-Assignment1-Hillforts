@@ -20,4 +20,5 @@
     <string name="visited_checkbox">Visted Hillfort</string>
     <string name="button_delete_image">Delete Image</string>
     <string name="heading_hillfort_name">New Hillfort</string>
+    <string name="menu_hillfort_image">Hillfort Image</string>
 </resources>

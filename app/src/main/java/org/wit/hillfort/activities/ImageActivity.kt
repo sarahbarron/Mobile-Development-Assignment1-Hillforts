@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Parcelable
 import android.provider.MediaStore
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
@@ -24,8 +25,8 @@ class ImageActivity: AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
-//        toolbar.title = title
-//        setSupportActionBar(toolbar)
+        toolbarImage.title = title
+        setSupportActionBar(toolbarImage)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         app = application as MainApp
@@ -41,6 +42,6 @@ class ImageActivity: AppCompatActivity(), AnkoLogger {
                 finish()
            }
        }
-
     }
 }
+
