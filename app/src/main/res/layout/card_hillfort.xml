@@ -10,15 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
+        <CheckBox
+            android:id="@+id/visitedCard"
+            android:layout_alignParentStart="true"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:layout_marginLeft="2dp"
+            android:onClick="onCheckboxClicked"
+            />
+
 
         <ImageView
             android:id="@+id/imageIcon"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentStart="false"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="16dp"
-            android:contentDescription="@string/change_hillfort_image" />
+            android:contentDescription="@string/change_hillfort_image"
+            android:layout_toRightOf="@+id/visitedCard"
+            />
 
         <TextView
             android:id="@+id/hillfortName"
@@ -35,5 +47,6 @@
             android:layout_below="@id/hillfortName"
             android:layout_toEndOf="@+id/imageIcon"
             />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

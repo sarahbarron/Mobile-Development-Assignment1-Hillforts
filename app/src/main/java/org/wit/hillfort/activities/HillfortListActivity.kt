@@ -6,16 +6,18 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
+import org.wit.hillfort.models.UserModel
 
 
-class HillfortListActivity : AppCompatActivity(), HillfortListener {
+class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
 
     lateinit var app: MainApp
+    var hillfort = HillfortModel()
+    var user = UserModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +29,18 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+
+        if(intent.hasExtra("user"))
+        {
+            user = intent.extras?.getParcelable<UserModel>("user")!!
+            info("$user inside hillfortListActivity")
+        }
+
         loadHillforts()
     }
 
     private fun loadHillforts() {
-        showHillforts(app.hillforts.findAll())
+        showHillforts(app.hillforts.findAll(user.id))
     }
 
     fun showHillforts (hillforts: List<HillfortModel>) {
@@ -45,19 +54,40 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
-            R.id.item_add -> startActivityForResult<HillfortActivity>(0)
+            R.id.item_add -> startActivityForResult(intentFor<HillfortActivity>().putExtra(
+                "user",
+                user
+            ), 0)
+            R.id.item_logout ->startActivityForResult(intentFor<AuthenticationActivity>(),0)
+
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onHillfortClick(hillfort: HillfortModel) {
-        startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort_edit", hillfort), 0)
+        startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort_edit", hillfort).putExtra("user", user), 0)
+    }
+
+    override fun onVisitedCheckboxClick(hillfort: HillfortModel, isChecked: Boolean) {
+        info("hillfort :"+hillfort+" isChecked:"+ isChecked)
+        if(isChecked)
+        {
+            app.hillforts.visited(hillfort, true)
+        }
+        else{
+            app.hillforts.visited(hillfort, false)
+        }
+
     }
 //    Refreshes the view when a hillfort is updated
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         loadHillforts()
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    //    Don't allow a user to go back from the authentication scree
+    override fun onBackPressed() {
+        longToast("Logout from the menu to go back")
+    }
+
 }
-
-

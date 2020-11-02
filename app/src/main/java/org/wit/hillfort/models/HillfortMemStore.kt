@@ -11,8 +11,16 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
 
     val hillforts = ArrayList<HillfortModel>()
 
-    override fun findAll(): List<HillfortModel> {
+    override fun findAll(userId: Long): List<HillfortModel> {
         return hillforts
+    }
+
+    override fun findOne(hillfort: HillfortModel): HillfortModel{
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        if (foundHillfort != null) {
+            return foundHillfort
+        }
+        return hillfort
     }
 
     override fun create(hillfort: HillfortModel) {
@@ -33,6 +41,13 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
             logAll()
         }
     }
+    override fun visited(hillfort: HillfortModel, boolean: Boolean){
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        if(foundHillfort !=null) {
+            foundHillfort.visited = boolean
+
+        }
+    }
 
     override fun delete(hillfort: HillfortModel){
         hillforts.remove(hillfort)
@@ -40,5 +55,10 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
 
     fun logAll() {
         hillforts.forEach{ info("${it}") }
+    }
+
+    override fun deleteImage(hillfort: HillfortModel, image: String) {
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        foundHillfort?.images?.remove(image)
     }
 }
