@@ -42,9 +42,9 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
             else if(user.username.isNotEmpty() && user.password.isNotEmpty())
             {
                 if (user.username.matches(emailPattern.toRegex())){
-                    val isAuthenticated = app.users.authenticate(user.copy())
-                    if (isAuthenticated) {
-                        info("logging in user")
+                    val user = app.users.authenticate(user.copy())
+                    if (user.id !== 0L) {
+                        info("logging in user $user")
                         startActivityForResult(
                             intentFor<HillfortListActivity>().putExtra(
                                 "user",
@@ -94,8 +94,9 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
                         longToast("Already Registered, please Sign In")
                         info("authentication failed invalid username")
                     } else {
-                        app.users.create(user)
-                        info("User Register start HillfortListActivity")
+                        user = app.users.create(user.copy())
+
+                        info("$user created start HillfortListActivity")
                         startActivityForResult(
                             intentFor<HillfortListActivity>().putExtra(
                                 "user",
