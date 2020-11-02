@@ -7,18 +7,15 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort.*
-import org.jetbrains.anko.toast
 import org.wit.hillfort.models.HillfortModel
 import kotlinx.android.synthetic.main.activity_hillfort.hillfortName
-import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.*
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
-import org.wit.hillfort.activities.ImageListener
+
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
@@ -163,6 +160,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                 app.hillforts.delete(hillfort.copy())
                 finish()
             }
+            R.id.item_logout -> {
+                startActivityForResult(intentFor<AuthenticationActivity>(),0)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -201,6 +201,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
     override fun onImageClick(image: String){
         startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort),DELETE_IMAGE)
     }
+
+
 }
 
 
