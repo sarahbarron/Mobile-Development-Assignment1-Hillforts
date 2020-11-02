@@ -42,9 +42,9 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
             else if(user.username.isNotEmpty() && user.password.isNotEmpty())
             {
                 if (user.username.matches(emailPattern.toRegex())){
-                    val isAuthenticated = app.users.authenticate(user.copy())
-                    if (isAuthenticated) {
-                        info("logging in user")
+                    val user = app.users.authenticate(user.copy())
+                    if (user.id !== 0L) {
+                        info("logging in user $user")
                         startActivityForResult(
                             intentFor<HillfortListActivity>().putExtra(
                                 "user",

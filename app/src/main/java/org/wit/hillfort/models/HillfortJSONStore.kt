@@ -5,8 +5,10 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.wit.hillfort.helpers.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 val JSON_FILE = "hillforts.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
@@ -32,8 +34,17 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     }
 
     //    Return a list of all hillforts
-    override fun findAll(): MutableList<HillfortModel> {
-        return hillforts
+    override fun findAll(userId: Long): MutableList<HillfortModel> {
+        var foundHillforts:ArrayList<HillfortModel> = ArrayList<HillfortModel>()
+        for(hillfort in hillforts)
+        {
+            if(hillfort.user == userId)
+            {
+                foundHillforts.add(hillfort.copy())
+                info("$hillfort added to foundHillforts Array")
+            }
+        }
+        return foundHillforts
     }
 
     override fun findOne(hillfort: HillfortModel): HillfortModel{

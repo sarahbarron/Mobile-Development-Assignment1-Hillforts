@@ -82,14 +82,14 @@ class UserJSONStore : UserStore, AnkoLogger {
         userSerialize()
     }
 
-    override fun authenticate(user: UserModel):Boolean {
+    override fun authenticate(user: UserModel):UserModel {
         var foundUser: UserModel? = users.find{ p -> p.username == user.username }
         if(foundUser != null) {
             if (foundUser.password == user.password) {
-                return true
+                return foundUser
             }
         }
-        return false
+        return UserModel()
     }
 
 

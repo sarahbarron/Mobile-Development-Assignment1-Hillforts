@@ -40,7 +40,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
     }
 
     private fun loadHillforts() {
-        showHillforts(app.hillforts.findAll())
+        showHillforts(app.hillforts.findAll(user.id))
     }
 
     fun showHillforts (hillforts: List<HillfortModel>) {
@@ -54,7 +54,10 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
-            R.id.item_add -> startActivityForResult<HillfortActivity>(0)
+            R.id.item_add -> startActivityForResult(intentFor<HillfortActivity>().putExtra(
+                "user",
+                user
+            ), 0)
             R.id.item_logout ->startActivityForResult(intentFor<AuthenticationActivity>(),0)
 
         }
