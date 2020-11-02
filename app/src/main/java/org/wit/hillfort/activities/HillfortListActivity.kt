@@ -33,6 +33,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
         if(intent.hasExtra("user"))
         {
             user = intent.extras?.getParcelable<UserModel>("user")!!
+            info("$user inside hillfortListActivity")
         }
 
         loadHillforts()

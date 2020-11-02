@@ -46,6 +46,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         if(intent.hasExtra("user"))
         {
             user = intent.extras?.getParcelable<UserModel>("user")!!
+            info("$user inside HillfortActivity")
         }
 
         if (intent.hasExtra("hillfort_edit")) {
@@ -78,7 +79,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         }
 
         btnAdd.setOnClickListener() {
-            hillfort.user = user
+            hillfort.user = user.id
             hillfort.name = hillfortName.text.toString()
             info("Name: $hillfort.name")
             hillfort.description = hillfortDescription.text.toString()

@@ -94,8 +94,9 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
                         longToast("Already Registered, please Sign In")
                         info("authentication failed invalid username")
                     } else {
-                        app.users.create(user)
-                        info("User Register start HillfortListActivity")
+                        user = app.users.create(user.copy())
+
+                        info("$user created start HillfortListActivity")
                         startActivityForResult(
                             intentFor<HillfortListActivity>().putExtra(
                                 "user",

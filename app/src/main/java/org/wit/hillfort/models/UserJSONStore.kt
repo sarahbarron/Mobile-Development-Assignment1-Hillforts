@@ -57,10 +57,11 @@ class UserJSONStore : UserStore, AnkoLogger {
 
 
     //    Create a user
-    override fun create(user: UserModel) {
+    override fun create(user: UserModel): UserModel {
         user.id = generateRandomUserId()
         users.add(user)
         userSerialize()
+        return user
         info("user saved")
     }
 
