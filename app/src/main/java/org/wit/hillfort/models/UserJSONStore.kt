@@ -10,7 +10,7 @@ import org.jetbrains.anko.info
 import org.wit.hillfort.helpers.*
 import java.util.*
 
-val USER_JSON_FILE = "users.json"
+val USER_JSON_FILE = "hillforts.json"
 val Gson = GsonBuilder().setPrettyPrinting().create()
 val USER_lIST_TYPE = object : TypeToken<java.util.ArrayList<UserModel>>() {}.type
 
