@@ -67,5 +67,46 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
 
             }
         }
+
+        btnRegister.setOnClickListener(){
+
+            user.username = username.text.toString()
+            user.password = password.text.toString()
+
+            if(user.username.isEmpty() && user.password.isEmpty())
+            {
+                toast("Please Enter a Username and Password")
+            }
+            else if(user.username.isEmpty() && user.password.isNotEmpty())
+            {
+                toast("Please Enter a Username")
+            }
+            else if(user.username.isNotEmpty() && user.password.isEmpty())
+            {
+                toast("Please Enter a Password")
+            }
+            else if(user.username.isNotEmpty() && user.password.isNotEmpty())
+            {
+                if (user.username.matches(emailPattern.toRegex())){
+                    val userIsRegistered = app.users.isUsernameRegistered(user.username)
+                    if (userIsRegistered) {
+                        longToast("Already Registered, please Sign In")
+                        info("authentication failed invalid username")
+                    } else {
+                        app.users.create(user)
+                        info("User Register start HillfortListActivity")
+                        startActivityForResult(
+                            intentFor<HillfortListActivity>().putExtra(
+                                "user",
+                                user
+                            ), 0
+                        )
+                    }
+                }
+                else{
+                    toast("Invalid  Email Address")
+                }
+            }
+        }
     }
 }
