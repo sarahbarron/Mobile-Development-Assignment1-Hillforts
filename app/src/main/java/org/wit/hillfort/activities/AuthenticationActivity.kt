@@ -21,6 +21,7 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
 
         app = application as MainApp
 
+
 //        Sign In Button Click Listener & authentication
         btnAuthenticate.setOnClickListener(){
             user.username = username.text.toString()
@@ -108,5 +109,10 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
                 }
             }
         }
+    }
+
+//    Don't allow a user to go back from the authentication scree
+    override fun onBackPressed() {
+        longToast("You must Sign In or Register")
     }
 }

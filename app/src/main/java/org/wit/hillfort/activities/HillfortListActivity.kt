@@ -6,10 +6,7 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
@@ -49,6 +46,8 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
             R.id.item_add -> startActivityForResult<HillfortActivity>(0)
+            R.id.item_logout ->startActivityForResult(intentFor<AuthenticationActivity>(),0)
+
         }
         return super.onOptionsItemSelected(item)
     }
@@ -72,6 +71,11 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         loadHillforts()
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    //    Don't allow a user to go back from the authentication scree
+    override fun onBackPressed() {
+        longToast("Logout from the menu to go back")
     }
 
 }
