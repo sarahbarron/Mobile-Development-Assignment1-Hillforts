@@ -18,27 +18,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-<<<<<<< HEAD
-        <!--        Splash Screen-->
-        <activity android:name=".activities.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"  />
-            </intent-filter>
-        </activity>
-
-        <!--       List of hillforts activity-->
-        <activity android:name=".activities.HillfortListActivity">
-        </activity>
-
-        <!--        Single hillfort activity-->
-        <activity
-            android:name=".activities.HillfortActivity"
-            android:parentActivityName=".activities.HillfortListActivity">
-        </activity>
-
-        <!--        Map activity -->
-=======
         <!-- Splash Screen -->
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
@@ -59,7 +38,7 @@
         <activity
             android:name=".activities.HillfortActivity"
             android:parentActivityName=".activities.HillfortListActivity"></activity> <!-- Map activity -->
->>>>>>> release/0.1.2
+
         <activity
             android:name=".activities.MapActivity"
             android:label="@string/title_activity_map"

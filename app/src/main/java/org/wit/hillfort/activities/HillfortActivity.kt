@@ -1,11 +1,13 @@
 package org.wit.hillfort.activities
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort.*
@@ -16,6 +18,12 @@ import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
 import org.wit.hillfort.models.UserModel
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
@@ -26,7 +34,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
     val LOCATION_REQUEST = 2
     val DELETE_IMAGE = 3
     lateinit var app : MainApp
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -90,6 +97,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                     app.hillforts.update(hillfort.copy())
                     info("Edit: $hillfort")
                 } else {
+//
+                    val simpleDateFormat = SimpleDateFormat("yyy.MM.dd 'at' HH:mm:ss")
+                    val currentDateAndTime: String = simpleDateFormat.format(Date())
+                    hillfort.date = currentDateAndTime
                     app.hillforts.create(hillfort.copy())
                     info("Create: $hillfort")
                 }
