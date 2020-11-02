@@ -15,6 +15,7 @@ import org.jetbrains.anko.*
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
+import org.wit.hillfort.models.UserModel
 
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
@@ -35,13 +36,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         toolbarAdd.title=title
         setSupportActionBar(toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        var user = UserModel()
         app = application as MainApp
 
 
         val layoutManager = LinearLayoutManager(this)
         recyclerViewImages.layoutManager = layoutManager
 
+        if(intent.hasExtra("user"))
+        {
+            user = intent.extras?.getParcelable<UserModel>("user")!!
+        }
 
         if (intent.hasExtra("hillfort_edit")) {
             //        Create a Linear layout manager & tell the recyclerView to use this layout manager
@@ -73,6 +78,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         }
 
         btnAdd.setOnClickListener() {
+            hillfort.user = user
             hillfort.name = hillfortName.text.toString()
             info("Name: $hillfort.name")
             hillfort.description = hillfortDescription.text.toString()

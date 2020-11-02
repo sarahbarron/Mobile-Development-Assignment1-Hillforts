@@ -10,12 +10,14 @@ import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
+import org.wit.hillfort.models.UserModel
 
 
 class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
 
     lateinit var app: MainApp
     var hillfort = HillfortModel()
+    var user = UserModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,12 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+
+        if(intent.hasExtra("user"))
+        {
+            user = intent.extras?.getParcelable<UserModel>("user")!!
+        }
+
         loadHillforts()
     }
 
@@ -53,7 +61,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
     }
 
     override fun onHillfortClick(hillfort: HillfortModel) {
-        startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort_edit", hillfort), 0)
+        startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort_edit", hillfort).putExtra("user", user), 0)
     }
 
     override fun onVisitedCheckboxClick(hillfort: HillfortModel, isChecked: Boolean) {
