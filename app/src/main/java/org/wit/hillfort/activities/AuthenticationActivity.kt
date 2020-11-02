@@ -3,10 +3,7 @@ package org.wit.hillfort.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_authentication.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.UserModel
@@ -15,6 +12,8 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
 
     var user = UserModel()
     lateinit var app: MainApp
+//    Regex for an email address
+    var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
@@ -22,6 +21,7 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
 
         app = application as MainApp
 
+//        Sign In Button Click Listener & authentication
         btnAuthenticate.setOnClickListener(){
             user.username = username.text.toString()
             user.password = password.text.toString()
@@ -40,17 +40,31 @@ class AuthenticationActivity: AppCompatActivity(), AnkoLogger{
             }
             else if(user.username.isNotEmpty() && user.password.isNotEmpty())
             {
-                val isAuthenticated = app.users.authenticate(user.copy())
-                if (isAuthenticated)
-                {
-                    info("logging in user")
-                    startActivityForResult(intentFor<HillfortListActivity>().putExtra("user", user),0)
+                if (user.username.matches(emailPattern.toRegex())){
+                    val isAuthenticated = app.users.authenticate(user.copy())
+                    if (isAuthenticated) {
+                        info("logging in user")
+                        startActivityForResult(
+                            intentFor<HillfortListActivity>().putExtra(
+                                "user",
+                                user
+                            ), 0
+                        )
+                    } else {
+                        val userIsRegistered = app.users.isUsernameRegistered(user.username)
+                        if (userIsRegistered) {
+                            longToast("Your password is incorrect please try again")
+                        } else {
+                            longToast("Please Register: no user registered with this username")
+                        }
+
+                        info("authentication failed")
+                    }
                 }
-                else
-                {
-                    info("authentication failed")
-                    toast("Your username or password is incorrect please try again")
+                else{
+                    toast("Invalid  Email Address")
                 }
+
             }
         }
     }

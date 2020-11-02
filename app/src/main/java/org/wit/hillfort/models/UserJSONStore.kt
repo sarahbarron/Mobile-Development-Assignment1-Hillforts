@@ -10,7 +10,7 @@ import org.jetbrains.anko.info
 import org.wit.hillfort.helpers.*
 import java.util.*
 
-val USER_JSON_FILE = "hillforts.json"
+val USER_JSON_FILE = "users.json"
 val Gson = GsonBuilder().setPrettyPrinting().create()
 val USER_lIST_TYPE = object : TypeToken<java.util.ArrayList<UserModel>>() {}.type
 
@@ -44,6 +44,15 @@ class UserJSONStore : UserStore, AnkoLogger {
             return foundUser
         }
         return user
+    }
+
+    override fun isUsernameRegistered(username: String): Boolean{
+        val foundUser: UserModel? = users.find{ p -> p.username == username }
+        if (foundUser != null)
+        {
+            return true
+        }
+        return false
     }
 
 

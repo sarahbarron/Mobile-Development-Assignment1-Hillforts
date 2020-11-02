@@ -7,4 +7,5 @@ interface UserStore {
     fun delete(user: UserModel)
     fun authenticate(user: UserModel): Boolean
     fun update(user: UserModel)
+    fun isUsernameRegistered(username: String): Boolean
 }
