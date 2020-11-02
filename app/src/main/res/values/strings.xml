@@ -27,5 +27,6 @@
     <string name="action_sign_in">Sign In</string>
     <string name="action_register">Register</string>
     <string name="menu_logout">Logout</string>
->>>>>>> release/0.1.2
+    <string name="notes_input">Hillfort Notes</string>
+    <string name="date_created">Date Created: </string>
 </resources>

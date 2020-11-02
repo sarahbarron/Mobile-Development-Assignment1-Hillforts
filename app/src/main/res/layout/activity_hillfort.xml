@@ -54,6 +54,15 @@
                     android:padding="5px"
                     android:textAlignment="center"
                     />
+                <TextView
+                    android:id="@+id/dateCreated"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/date_created"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:textSelectHandleLeft="@string/date_created"
+                    />
 
                 <EditText
                     android:id="@+id/hillfortName"
@@ -82,6 +91,15 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
 
+                <EditText
+                    android:id="@+id/hillfortNotes"
+                    android:hint="@string/notes_input"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:inputType="text|textMultiLine"
+                    android:gravity="top"
+                    android:padding="8dp"/>
 
                 <Button
                     android:id="@+id/hillfortLocation"

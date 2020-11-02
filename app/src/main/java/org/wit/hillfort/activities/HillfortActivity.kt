@@ -62,9 +62,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
 
+            dateCreated.setText("Date Created: "+hillfort.date)
             headingHillfortName.setText(hillfort.name)
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
+            hillfortNotes.setText(hillfort.notes)
             btnAdd.setText(R.string.save_hillfort)
             loadHillfort()
 
@@ -88,9 +90,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         btnAdd.setOnClickListener() {
             hillfort.user = user.id
             hillfort.name = hillfortName.text.toString()
-            info("Name: $hillfort.name")
             hillfort.description = hillfortDescription.text.toString()
-            info("description : ${hillfort.description}")
+            hillfort.notes = hillfortNotes.text.toString()
+
             if (hillfort.name.isNotEmpty()) {
 
                 if (edit) {
