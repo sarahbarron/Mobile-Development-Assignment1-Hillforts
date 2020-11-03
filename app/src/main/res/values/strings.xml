@@ -3,7 +3,7 @@
     <string name="archaeological_fieldwork">Archaeological Fieldwork</string>
     <string name="hint_hillfortName">Hillfort Name</string>
     <string name="hint_hillfortDescription">Hillfort Description</string>
-    <string name="menu_addHillfort">Add</string>
+    <string name="menu_addHillfort">Add Hillfort</string>
     <string name="menu_cancelHillfort">Cancel</string>
     <string name="enter_hillfort_name"> Please enter a Hillfort name </string>
     <string name="save_hillfort"> Save Hillfort</string>
@@ -29,4 +29,5 @@
     <string name="menu_logout">Logout</string>
     <string name="notes_input">Hillfort Notes</string>
     <string name="date_created">Date Created: </string>
+    <string name="menu_settings">Settings</string>
 </resources>
