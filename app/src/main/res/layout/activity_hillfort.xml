@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.wit.hillfort.activities.HillfortActivity">
+    tools:context="org.wit.hillfort.activities.HillfortActivity"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +26,8 @@
                 android:id="@+id/toolbarAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleTextColor="@color/colorPrimary" />
+                app:titleTextColor="@color/colorPrimary"
+             />
         </com.google.android.material.appbar.AppBarLayout>
 
 
