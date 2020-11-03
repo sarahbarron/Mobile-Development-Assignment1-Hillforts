@@ -14,9 +14,6 @@
     <string name="max_hillfort_images">Maximum Images Added</string>
     <string name="button_location">Set Location</string>
     <string name="title_activity_map">Map</string>
-<<<<<<< HEAD
-    <string name ="menu_deleteHillfort">Delete</string>
-=======
     <string name="menu_deleteHillfort">Delete</string>
     <string name="hillfort_name">Hillfort Name</string>
     <string name="button_addHillfort">Add Hillfort</string>
@@ -30,5 +27,6 @@
     <string name="action_sign_in">Sign In</string>
     <string name="action_register">Register</string>
     <string name="menu_logout">Logout</string>
->>>>>>> release/0.1.2
+    <string name="notes_input">Hillfort Notes</string>
+    <string name="date_created">Date Created: </string>
 </resources>

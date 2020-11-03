@@ -28,15 +28,12 @@
                 app:titleTextColor="@color/colorPrimary" />
         </com.google.android.material.appbar.AppBarLayout>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> release/0.1.2
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/appBarLayout"
-            android:layout_marginTop="41dp"
+            android:layout_marginTop="10dp"
             android:fillViewport="true">
 
             <LinearLayout
@@ -44,8 +41,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-<<<<<<< HEAD
-=======
+
 
                 <TextView
                     android:id="@+id/headingHillfortName"
@@ -58,7 +54,15 @@
                     android:padding="5px"
                     android:textAlignment="center"
                     />
->>>>>>> release/0.1.2
+                <TextView
+                    android:id="@+id/dateCreated"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/date_created"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:textSelectHandleLeft="@string/date_created"
+                    />
 
                 <EditText
                     android:id="@+id/hillfortName"
@@ -72,12 +76,7 @@
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
-<<<<<<< HEAD
-                    android:textSize="14sp" />
-=======
                     android:textSize="20sp" />
->>>>>>> release/0.1.2
-
 
                 <EditText
                     android:id="@+id/hillfortDescription"
@@ -92,6 +91,15 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
 
+                <EditText
+                    android:id="@+id/hillfortNotes"
+                    android:hint="@string/notes_input"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:inputType="text|textMultiLine"
+                    android:gravity="top"
+                    android:padding="8dp"/>
 
                 <Button
                     android:id="@+id/hillfortLocation"
@@ -124,26 +132,9 @@
                     android:layout_height="match_parent"
                     android:scrollbars="vertical"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-<<<<<<< HEAD
 
-                <Button
-                    android:id="@+id/hillfortLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/colorAccent"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:stateListAnimator="@null"
-                    android:text="@string/button_location"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"/>
-
-=======
 <!-- Button to add a hillfort-->
 
-=======
->>>>>>> release/0.1.2
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
@@ -156,12 +147,7 @@
                     android:text="@string/button_addHillfort"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
-<<<<<<< HEAD
 
-            </LinearLayout>
-        </ScrollView>
-
-=======
 
                 <CheckBox
                     android:id="@+id/visitedHillfort"
@@ -178,7 +164,7 @@
 
             </LinearLayout>
         </ScrollView>
->>>>>>> release/0.1.2
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
