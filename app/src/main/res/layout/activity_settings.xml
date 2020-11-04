@@ -26,8 +26,8 @@
                 android:id="@+id/toolbarSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleTextColor="@color/colorPrimary"
-                />
+                app:titleTextColor="@color/colorPrimary" />
+
         </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -81,8 +81,6 @@
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
-
-
                 <Button
                     android:id="@+id/btnUpdateSettings"
                     android:layout_width="match_parent"
@@ -95,10 +93,8 @@
                     android:text="@string/button_save_user_settings"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
-
             </LinearLayout>
         </ScrollView>
-
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

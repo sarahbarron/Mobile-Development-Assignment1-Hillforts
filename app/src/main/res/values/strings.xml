@@ -34,4 +34,7 @@
     <string name="hint_userName">Username</string>
     <string name="hint_password">Password</string>
     <string name="button_save_user_settings">Save User Settings</string>
+    <string name="menu_updateSettings">Update</string>
+    <string name="menu_cancelSettings">Cancel</string>
+    <string name="menu_deleteUser">Delete Account</string>
 </resources>

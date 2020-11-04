@@ -8,9 +8,6 @@
             android:icon="@android:drawable/ic_menu_add"
             android:title="@string/menu_addHillfort"
              />
-
-
-
         <item
             android:id="@+id/item_settings"
             android:icon="@android:drawable/ic_dialog_info"

@@ -47,8 +47,8 @@
             android:name=".activities.ImageActivity"
             android:parentActivityName=".activities.HillfortActivity"></activity>
         <activity
-            android:name=".activities.UserSettingsActivity"
-            android:parentActivityName=".activities.HillfortListActivity"></activity>
+            android:name=".activities.UserSettingsActivity">
+        </activity>
     </application>
 
 </manifest>
