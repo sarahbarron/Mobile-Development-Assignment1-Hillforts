@@ -96,6 +96,20 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         serialize()
     }
 
+    override fun deleteUserHillforts(userId: Long) {
+        val foundHillforts = findAll(userId)
+
+        for(hillfort in foundHillforts)
+        {
+            info("Hillfort check: "+hillfort)
+            if(hillfort.user == userId)
+            {
+                info("deleting hillfort for $userId")
+                hillforts.remove(hillfort)
+            }
+            serialize()
+        }
+    }
     // Serialize / write data to the JSON file
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(hillforts, listType)

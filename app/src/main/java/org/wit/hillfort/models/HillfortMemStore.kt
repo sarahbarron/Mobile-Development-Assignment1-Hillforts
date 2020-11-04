@@ -45,12 +45,21 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
         if(foundHillfort !=null) {
             foundHillfort.visited = boolean
-
         }
     }
 
     override fun delete(hillfort: HillfortModel){
         hillforts.remove(hillfort)
+    }
+
+    override fun deleteUserHillforts(userId: Long) {
+        for(hillfort in hillforts)
+        {
+            if(hillfort.user == userId)
+            {
+                hillforts.remove(hillfort.copy())
+            }
+        }
     }
 
     fun logAll() {
