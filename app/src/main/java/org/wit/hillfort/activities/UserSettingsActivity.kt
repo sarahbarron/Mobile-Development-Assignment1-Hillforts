@@ -32,6 +32,13 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
             settingsPassword.setText(user.password)
         }
 
+        btnUpdateSettings.setOnClickListener(){
+
+        }
+        btnDeleteUser.setOnClickListener(){
+            app.users.delete(user.copy())
+            startActivityForResult(intentFor<AuthenticationActivity>(),0)
+        }
 
     }
 
