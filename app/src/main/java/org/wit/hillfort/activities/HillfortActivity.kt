@@ -1,13 +1,11 @@
 package org.wit.hillfort.activities
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort.*
@@ -19,9 +17,6 @@ import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
 import org.wit.hillfort.models.UserModel
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,6 +24,7 @@ import kotlin.collections.ArrayList
 class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
     var hillfort = HillfortModel()
+    var user = UserModel()
     var edit = false
     val IMAGE_REQUEST = 1
     val LOCATION_REQUEST = 2
@@ -43,7 +39,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         toolbarAdd.title=title
         setSupportActionBar(toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        var user = UserModel()
+
         app = application as MainApp
 
 
@@ -183,6 +179,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             R.id.item_logout -> {
                 startActivityForResult(intentFor<AuthenticationActivity>(),0)
             }
+            R.id.item_settings ->  startActivityForResult(intentFor<UserSettingsActivity>().putExtra(
+                "user",
+                user
+            ), 0)
         }
         return super.onOptionsItemSelected(item)
     }
