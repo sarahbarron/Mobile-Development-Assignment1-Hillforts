@@ -38,4 +38,5 @@
     <string name="menu_cancelSettings">Cancel</string>
     <string name="menu_deleteUser">Delete Account</string>
     <string name="button_delete_user">Delete User</string>
+    <string name="item_delete_all_hillforts">Delete All</string>
 </resources>

@@ -9,6 +9,11 @@
             android:title="@string/menu_addHillfort"
              />
         <item
+            android:id="@+id/item_deleteAllHillforts"
+            android:icon="@drawable/delete"
+            android:title="@string/item_delete_all_hillforts"
+            />
+        <item
             android:id="@+id/item_settings"
             android:icon="@drawable/settings"
             android:title="@string/menu_settings"

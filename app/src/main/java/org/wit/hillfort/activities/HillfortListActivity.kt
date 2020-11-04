@@ -59,6 +59,10 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
                 "user",
                 user
             ), 0)
+            R.id.item_deleteAllHillforts -> {
+                app.hillforts.deleteUserHillforts(user.id)
+                loadHillforts()
+            }
             R.id.item_logout ->startActivityForResult(intentFor<AuthenticationActivity>(),0)
             R.id.item_settings ->  startActivityForResult(intentFor<UserSettingsActivity>().putExtra(
                 "user",
