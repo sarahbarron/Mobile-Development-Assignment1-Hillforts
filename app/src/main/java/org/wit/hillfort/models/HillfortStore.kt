@@ -8,4 +8,5 @@ interface HillfortStore {
     fun visited(hillfort: HillfortModel, boolean: Boolean)
     fun deleteImage(hillfort: HillfortModel, image: String)
     fun findOne(hillfort: HillfortModel): HillfortModel
+    fun deleteUserHillforts(userId: Long)
 }

@@ -6,9 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_settings.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.UserModel
@@ -28,14 +26,33 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
         if(intent.hasExtra("user"))
         {
             user = intent.extras?.getParcelable<UserModel>("user")!!
+            user = loadUser()
             settingsUsername.setText(user.username)
             settingsPassword.setText(user.password)
         }
 
+//        Update user details
         btnUpdateSettings.setOnClickListener(){
+            var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
+            if(settingsUsername != null && settingsPassword !=null) {
+                if (user.username.matches(emailPattern.toRegex())) {
+                    user.username = settingsUsername.text.toString()
+                    user.password = settingsPassword.text.toString()
+                    app.users.update(user)
+                }
+                else{
+                    longToast("Username must be your email address")
+                }
+            }
+            else{
+                toast("Enter a username and password")
+            }
         }
+
+//        Delete User
         btnDeleteUser.setOnClickListener(){
+            app.hillforts.deleteUserHillforts(user.id)
             app.users.delete(user.copy())
             startActivityForResult(intentFor<AuthenticationActivity>(),0)
         }
@@ -52,6 +69,8 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
                 finish()
             }
             R.id.item_deleteUser -> {
+                info("delete :"+user.id)
+                app.hillforts.deleteUserHillforts(user.id)
                 app.users.delete(user.copy())
                 startActivityForResult(intentFor<AuthenticationActivity>(),0)
             }
@@ -62,5 +81,9 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
         }
         return super.onOptionsItemSelected(item)
     }
-
+    //    retrieve the current hillfort from the JSON file
+    fun loadUser(): UserModel{
+        user = app.users.findOne(user.copy())
+        return user
+    }
 }
