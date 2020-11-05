@@ -20,6 +20,7 @@ fun generateRandomId(): Long {
 }
 
 
+// Json store for hillforts
 class HillfortJSONStore : HillfortStore, AnkoLogger {
 
     val context: Context
@@ -47,6 +48,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         return foundHillforts
     }
 
+    //  Return one hillfort
     override fun findOne(hillfort: HillfortModel): HillfortModel{
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
         if (foundHillfort != null) {
@@ -54,6 +56,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         }
         return hillfort
     }
+
     //    Create a hillfort
     override fun create(hillfort: HillfortModel) {
         hillfort.id = generateRandomId()
@@ -76,6 +79,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         }
     }
 
+    // Check if a hillfort has been visited or not
     override fun visited(hillfort: HillfortModel, boolean: Boolean) {
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
         if (foundHillfort != null) {
@@ -84,16 +88,94 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         }
     }
 
+    // delete a hillfort
     override fun delete(hillfort: HillfortModel) {
         hillforts.remove(hillfort)
         serialize()
     }
 
-//  Delete an image from a hillfort
+    //  Delete an image from a hillfort
     override fun deleteImage(hillfort: HillfortModel, image: String) {
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
         foundHillfort?.images?.remove(image)
         serialize()
+    }
+
+    // Delete all hillforts for a certain user
+    override fun deleteUserHillforts(userId: Long) {
+        val foundHillforts = findAll(userId)
+
+        for(hillfort in foundHillforts)
+        {
+            if(hillfort.user == userId)
+            {
+                info("deleting hillfort for $userId")
+                hillforts.remove(hillfort)
+            }
+            serialize()
+        }
+    }
+
+//    Statistics
+
+    //    Total number of hillforts a user has
+    override fun totalHillforts(userId: Long): Int{
+        val total = findAll(userId).size
+        info("Total user hillforts: $total")
+        return total
+        }
+
+    //    Total number of hillforts the user has viewed
+    override fun viewedHillforts(userId: Long): Int{
+        val foundHillforts = findAll(userId)
+        var total = 0
+        for (hillfort in foundHillforts)
+        {
+            if (hillfort.visited) total++
+        }
+        info("Average user visited: $total")
+        return total
+    }
+
+    //  Total number of hillforts the user still has to view
+    override fun unseenHillforts(userId:Long): Int{
+        val total = totalHillforts(userId) - viewedHillforts(userId)
+        info("Average user unseen: $total")
+        return total
+    }
+
+    //  return the average number of hillforts per student
+    override fun classAverageTotal(numOfUsers:Int): Int {
+        val averageViewed = hillforts.size / numOfUsers
+        return averageViewed
+    }
+
+    //   return the average number of hillforts viewed by the class
+    override fun classAverageViewed(numOfUsers: Int):Int{
+        var totalViewed = 0
+        for (hillfort in hillforts)
+        {
+            if(hillfort.visited){
+                totalViewed++
+            }
+        }
+        var averageViewed = totalViewed/numOfUsers
+        info("Average number of hillforts viewed in the class: $averageViewed")
+        return averageViewed
+    }
+
+    //    Return the average number of hillforts the class still has to view
+    override fun classAverageUnseen(numOfUsers: Int):Int{
+        var totalUnseen = 0
+        for (hillfort in hillforts)
+        {
+            if(!hillfort.visited){
+                totalUnseen++
+            }
+        }
+        var averageUnseen = totalUnseen / numOfUsers
+        info("Average number of hillforts unseen in the class: $averageUnseen")
+        return averageUnseen
     }
 
     // Serialize / write data to the JSON file

@@ -10,15 +10,18 @@ import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 
 
+// Splash screen activity for initial loading of the app
 class SplashActivity : AppCompatActivity(), AnkoLogger {
 
     lateinit var app:MainApp
-//    splash timer
+    //    splash timer
     private val SPLASH_TIME_OUT = 3000L
+
     override fun onCreate(savedInstanceState: Bundle?) {
         info("Splash Screen Activated")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        // Once the timer has finished start the Authentication Activity
         Handler().postDelayed(
             {
                 startActivity(Intent(this, AuthenticationActivity::class.java))

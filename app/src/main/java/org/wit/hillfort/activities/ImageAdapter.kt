@@ -9,17 +9,21 @@ import org.wit.hillfort.R
 import org.wit.hillfort.helpers.readImageFromPath
 
 
+// Listener for click on an image
 interface ImageListener{
     fun onImageClick(image: String)
 }
 
+// Adapter for a list of images and a listner
 class ImageAdapter(private var images: ArrayList<String>,
                    private val listener: ImageListener
 ) :
 
+    // Recycler View to show a list of images
     RecyclerView.Adapter<ImageAdapter.MainHolder>() {
 
 
+    // create the view holder for the image card
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
 
         return MainHolder(
@@ -31,6 +35,7 @@ class ImageAdapter(private var images: ArrayList<String>,
         )
     }
 
+    // bind the image and the listener
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val image = images[holder.adapterPosition]
         holder.bind(image, listener)
@@ -40,6 +45,7 @@ class ImageAdapter(private var images: ArrayList<String>,
     //    Gets the number of images we need to display
     override fun getItemCount(): Int = images.size
 
+    // bind each image to the image card & set the click listener on each image
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(image: String, listener: ImageListener) {

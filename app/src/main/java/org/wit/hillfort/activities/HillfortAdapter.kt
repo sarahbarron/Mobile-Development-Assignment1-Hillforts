@@ -12,11 +12,13 @@ import org.wit.hillfort.helpers.readImageFromPath
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
 
+// Listener for clicks on a hillfort card or on the checkbox for visited hillforts
 interface HillfortListener {
     fun onHillfortClick(hillfort: HillfortModel)
     fun onVisitedCheckboxClick(hillfort: HillfortModel, isChecked: Boolean)
 }
 
+// Hillfort Adapter for recycler view of hillforts
 class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
                                     private val listener: HillfortListener) :
     RecyclerView.Adapter<HillfortAdapter.MainHolder>() {
@@ -40,10 +42,11 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
     override fun getItemCount(): Int = hillforts.size
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        // for each hillfort bind values to the hillfort card
         fun bind(hillfort: HillfortModel, listener: HillfortListener) {
             itemView.hillfortName.text = hillfort.name
             itemView.hillfortDescription.text = hillfort.description
+            // icon image on the hillfort list
             if (hillfort.images.size >0)
             {
                 itemView.imageIcon.setImageBitmap(
@@ -56,11 +59,8 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
             if (hillfort.visited){
                 itemView.visitedCard.isChecked = true
             }
-//
             itemView.setOnClickListener{listener.onHillfortClick(hillfort)}
             itemView.visitedCard.setOnClickListener{listener.onVisitedCheckboxClick(hillfort, itemView.visitedCard.isChecked)}
         }
     }
-
-
 }

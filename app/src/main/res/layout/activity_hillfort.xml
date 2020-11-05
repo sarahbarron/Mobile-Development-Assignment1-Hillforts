@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.wit.hillfort.activities.HillfortActivity">
+    tools:context="org.wit.hillfort.activities.HillfortActivity"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,9 +26,14 @@
                 android:id="@+id/toolbarAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleTextColor="@color/colorPrimary" />
+                app:titleTextColor="@color/colorPrimary"
+             />
         </com.google.android.material.appbar.AppBarLayout>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> release/0.1.3
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,8 +56,21 @@
                     android:background="@color/colorAccent"
                     android:padding="10dp"
                     android:textAlignment="center"
+<<<<<<< HEAD
                     android:textColor="@color/colorPrimary"
                     android:textSize="25dp" />
+=======
+                    />
+                <TextView
+                    android:id="@+id/dateCreated"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/date_created"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:textSelectHandleLeft="@string/date_created"
+                    />
+>>>>>>> release/0.1.3
 
                 <EditText
                     android:id="@+id/hillfortName"
@@ -66,8 +85,11 @@
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> release/0.1.3
 
                 <EditText
                     android:id="@+id/hillfortDescription"
@@ -82,6 +104,36 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
 
+                <EditText
+                    android:id="@+id/hillfortNotes"
+                    android:hint="@string/notes_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:inputType="text|textMultiLine"
+                    android:gravity="top"
+                    android:padding="8dp"
+                    />
+                <TextView
+                    android:id="@+id/hillfortLat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/hillfort_lat"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/hillfortLng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/hillfort_lng"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"/>
 
                 <Button
                     android:id="@+id/hillfortLocation"
@@ -117,6 +169,11 @@
                     android:scrollbars="vertical"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+<<<<<<< HEAD
+=======
+<!-- Button to add a hillfort-->
+
+>>>>>>> release/0.1.3
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
@@ -147,7 +204,10 @@
             </LinearLayout>
         </ScrollView>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> release/0.1.3
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

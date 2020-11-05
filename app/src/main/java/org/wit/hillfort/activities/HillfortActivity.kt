@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
+import androidx.core.app.TaskStackBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort.*
@@ -16,17 +17,20 @@ import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.Location
 import org.wit.hillfort.models.UserModel
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
     var hillfort = HillfortModel()
+    var user = UserModel()
     var edit = false
     val IMAGE_REQUEST = 1
     val LOCATION_REQUEST = 2
     val DELETE_IMAGE = 3
     lateinit var app : MainApp
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,7 +40,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         toolbarAdd.title=title
         setSupportActionBar(toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        var user = UserModel()
+
         app = application as MainApp
 
 
@@ -51,20 +55,22 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
         if (intent.hasExtra("hillfort_edit")) {
             //        Create a Linear layout manager & tell the recyclerView to use this layout manager
-
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
 
+            dateCreated.setText("Date Created: "+hillfort.date)
             headingHillfortName.setText(hillfort.name)
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
+            hillfortNotes.setText(hillfort.notes)
+            hillfortLat.setText("Lat: "+hillfort.lat)
+            hillfortLng.setText("Lng: "+hillfort.lng)
             btnAdd.setText(R.string.save_hillfort)
             loadHillfort()
 
             if (hillfort.visited){
                 visitedHillfort.isChecked = true
             }
-
         }
 
         chooseImage.setOnClickListener {
@@ -81,15 +87,20 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         btnAdd.setOnClickListener() {
             hillfort.user = user.id
             hillfort.name = hillfortName.text.toString()
-            info("Name: $hillfort.name")
             hillfort.description = hillfortDescription.text.toString()
-            info("description : ${hillfort.description}")
-            if (hillfort.name.isNotEmpty()) {
+            hillfort.notes = hillfortNotes.text.toString()
 
+            if (hillfort.name.isNotEmpty()) {
                 if (edit) {
                     app.hillforts.update(hillfort.copy())
                     info("Edit: $hillfort")
                 } else {
+                    val simpleDateFormat = SimpleDateFormat("yyy.MM.dd 'at' HH:mm:ss")
+                    val currentDateAndTime: String = simpleDateFormat.format(Date())
+                    hillfort.date = currentDateAndTime
+                    if (visitedHillfort.isChecked){
+                        hillfort.visited = true
+                    }
                     app.hillforts.create(hillfort.copy())
                     info("Create: $hillfort")
                 }
@@ -170,6 +181,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             R.id.item_logout -> {
                 startActivityForResult(intentFor<AuthenticationActivity>(),0)
             }
+            R.id.item_settings ->  startActivityForResult(intentFor<UserSettingsActivity>().putExtra(
+                "user",
+                user
+            ), 0)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -195,6 +210,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                     hillfort.lat = location.lat
                     hillfort.lng = location.lng
                     hillfort.zoom = location.zoom
+                    hillfortLat.setText("Lat: "+hillfort.lat)
+                    hillfortLng.setText("Lng: "+hillfort.lng)
                 }
             }
             DELETE_IMAGE->{
@@ -206,10 +223,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
 
     override fun onImageClick(image: String){
-        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort),DELETE_IMAGE)
+        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort).putExtra("user",user),DELETE_IMAGE)
     }
 
-
+//   Functions needed to return the user to the HillfortListActivity after the Up navigation is pressed
+    override fun onPrepareSupportNavigateUpTaskStack(builder: TaskStackBuilder) {
+        super.onPrepareSupportNavigateUpTaskStack(builder)
+        builder.editIntentAt(builder.intentCount - 1)?.putExtra("user", user)
+    }
+    override fun supportShouldUpRecreateTask(targetIntent: Intent): Boolean {
+        info("Hillfort: supportShouldUpRecreateTask")
+        return true
+    }
 }
-
-
