@@ -212,7 +212,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                     hillfort.zoom = location.zoom
                     hillfortLat.setText("Lat: "+hillfort.lat)
                     hillfortLng.setText("Lng: "+hillfort.lng)
-
                 }
             }
             DELETE_IMAGE->{
@@ -237,5 +236,3 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         return true
     }
 }
-
-
