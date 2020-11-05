@@ -91,15 +91,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             hillfort.notes = hillfortNotes.text.toString()
 
             if (hillfort.name.isNotEmpty()) {
-
                 if (edit) {
                     app.hillforts.update(hillfort.copy())
                     info("Edit: $hillfort")
                 } else {
-//
                     val simpleDateFormat = SimpleDateFormat("yyy.MM.dd 'at' HH:mm:ss")
                     val currentDateAndTime: String = simpleDateFormat.format(Date())
                     hillfort.date = currentDateAndTime
+                    if (visitedHillfort.isChecked){
+                        hillfort.visited = true
+                    }
                     app.hillforts.create(hillfort.copy())
                     info("Create: $hillfort")
                 }
