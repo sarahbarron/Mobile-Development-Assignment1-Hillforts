@@ -98,4 +98,19 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
         longToast("Logout from the menu to go back")
     }
 
+    override fun onResume(){
+        super.onResume()
+        if(intent.hasExtra("user"))
+        {
+            user = intent.extras?.getParcelable<UserModel>("user")!!
+            info("$user onResume")
+        }
+        loadHillforts()
+    }
+    override fun supportShouldUpRecreateTask(targetIntent: Intent): Boolean {
+        info("List: supportShouldUpRecreateTask")
+        return true
+    }
+
+
 }

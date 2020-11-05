@@ -110,6 +110,69 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
             serialize()
         }
     }
+
+//    Statistics
+
+//    Total number of hillforts a user has
+    override fun totalHillforts(userId: Long): Int{
+        val total = findAll(userId).size
+        info("Total user hillforts: $total")
+        return total
+        }
+
+//    Total number of hillforts the user has viewed
+    override fun viewedHillforts(userId: Long): Int{
+        val foundHillforts = findAll(userId)
+        var total = 0
+        for (hillfort in foundHillforts)
+        {
+            if (hillfort.visited) total++
+        }
+        info("Average user visited: $total")
+        return total
+    }
+
+//  Total number of hillforts the user still has to view
+    override fun unseenHillforts(userId:Long): Int{
+        val total = totalHillforts(userId) - viewedHillforts(userId)
+        info("Average user unseen: $total")
+        return total
+    }
+
+//    Calculate the class averages
+    override fun classAverageTotal(numOfUsers:Int): Int {
+        val averageViewed = hillforts.size / numOfUsers
+        return averageViewed
+    }
+
+//    The average number of hillforts the class has viewed
+    override fun classAverageViewed(numOfUsers: Int):Int{
+        var totalViewed = 0
+        for (hillfort in hillforts)
+        {
+            if(hillfort.visited){
+                totalViewed++
+            }
+        }
+        var averageViewed = totalViewed/numOfUsers
+        info("Average number of hillforts viewed in the class: $averageViewed")
+        return averageViewed
+    }
+
+//    The average number of hillforts the class still has to view
+    override fun classAverageUnseen(numOfUsers: Int):Int{
+        var totalUnseen = 0
+        for (hillfort in hillforts)
+        {
+            if(!hillfort.visited){
+                totalUnseen++
+            }
+        }
+        var averageUnseen = totalUnseen / numOfUsers
+        info("Average number of hillforts unseen in the class: $averageUnseen")
+        return averageUnseen
+    }
+
     // Serialize / write data to the JSON file
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(hillforts, listType)

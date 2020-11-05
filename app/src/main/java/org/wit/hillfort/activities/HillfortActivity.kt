@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
+import androidx.core.app.TaskStackBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort.*
@@ -219,10 +220,18 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
 
     override fun onImageClick(image: String){
-        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort),DELETE_IMAGE)
+        startActivityForResult(intentFor<ImageActivity>().putExtra("image", image).putExtra("hillfort", hillfort).putExtra("user",user),DELETE_IMAGE)
     }
 
-
+//   Functions needed to return the user to the HillfortListActivity after the Up navigation is pressed
+    override fun onPrepareSupportNavigateUpTaskStack(builder: TaskStackBuilder) {
+        super.onPrepareSupportNavigateUpTaskStack(builder)
+        builder.editIntentAt(builder.intentCount - 1)?.putExtra("user", user)
+    }
+    override fun supportShouldUpRecreateTask(targetIntent: Intent): Boolean {
+        info("Hillfort: supportShouldUpRecreateTask")
+        return true
+    }
 }
 
 
