@@ -38,12 +38,13 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
             statisticsHillfortsTotal.setText("Total: $userViewed")
             statisticsHillfortsViewed.setText("Viewed: "+app.hillforts.viewedHillforts(user.id))
             statisticsHillfortsUnseen.setText("Unseen: "+app.hillforts.unseenHillforts(user.id))
-            val classViewed = app.hillforts.classAverageViewed()
+            val classViewed = app.hillforts.classAverageViewed(app.users.findAll().size)
+            statisticsClassTotal.setText("Average Total: "+app.hillforts.classAverageTotal(app.users.findAll().size))
             statisticsClassViewed.setText("Average Viewed: $classViewed")
-            statisticsClassUnseen.setText("Average Unseen: "+app.hillforts.classAverageUnseen())
+            statisticsClassUnseen.setText("Average Unseen: "+app.hillforts.classAverageUnseen(app.users.findAll().size))
             if(userViewed>=classViewed){ statisticsUserPosition.setText("Keep up the good work!!")}
             else {
-                statisticsUserPosition.setText("You are below average! It might be time to catch up")
+                statisticsUserPosition.setText("You are below average! \n It might be time to start catching up")
                 statisticsUserPosition.setTextColor(RED)
             }
         }

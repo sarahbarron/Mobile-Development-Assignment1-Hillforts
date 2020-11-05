@@ -139,41 +139,39 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         return total
     }
 
-//    The average number of hillforts the class has viewed
-    override fun classAverageViewed():Int{
-        var totalViewed = 0
+//    Calculate the class averages
+    override fun classAverageTotal(numOfUsers:Int): Int {
+        val averageViewed = hillforts.size / numOfUsers
+        return averageViewed
+    }
 
+//    The average number of hillforts the class has viewed
+    override fun classAverageViewed(numOfUsers: Int):Int{
+        var totalViewed = 0
         for (hillfort in hillforts)
         {
-            info("class average hillfort $hillfort" )
             if(hillfort.visited){
-                info("class totalUnseen: $totalViewed")
                 totalViewed++
             }
         }
-        var averageViewed = hillforts.size/totalViewed
-    info("$totalViewed /"+hillforts.size+" = $averageViewed")
+        var averageViewed = totalViewed/numOfUsers
+        info("Average number of hillforts viewed in the class: $averageViewed")
         return averageViewed
-
     }
 
 //    The average number of hillforts the class still has to view
-    override fun classAverageUnseen():Int{
+    override fun classAverageUnseen(numOfUsers: Int):Int{
         var totalUnseen = 0
         for (hillfort in hillforts)
         {
-            info("class average hillfort $hillfort" )
             if(!hillfort.visited){
                 totalUnseen++
-                info("class totalUnseen: $totalUnseen")
             }
         }
-
-        var averageUnseen = hillforts.size/totalUnseen
-        info("$totalUnseen /"+hillforts.size+" = $averageUnseen")
+        var averageUnseen = totalUnseen / numOfUsers
+        info("Average number of hillforts unseen in the class: $averageUnseen")
         return averageUnseen
     }
-
 
     // Serialize / write data to the JSON file
     private fun serialize() {

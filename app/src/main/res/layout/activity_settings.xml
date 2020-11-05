@@ -168,6 +168,15 @@
                     android:textAlignment="center"
                     />
                 <TextView
+                    android:id="@+id/statisticsClassTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/statistics_class_avg_total_hillforts"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"/>
+                <TextView
                     android:id="@+id/statisticsClassViewed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

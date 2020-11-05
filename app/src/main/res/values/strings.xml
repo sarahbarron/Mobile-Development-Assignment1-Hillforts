@@ -44,8 +44,9 @@
     <string name ="statistics_hillforts_total">Total: </string>
     <string name ="statistics_hillforts_viewed">Total Viewed: </string>
     <string name ="statistics_hillforts_unseen">Total Unseen: </string>
-    <string name ="statistics_class_avg_heading">Your Class Averages</string>
+    <string name ="statistics_class_avg_heading">Your Class Average Statistics</string>
+    <string name = "statistics_class_avg_total_hillforts">Average Hillforts Total: </string>
     <string name ="statistics_class_viewed">Average Hillforts Viewed: </string>
-    <string name ="statistics_class_unseen">Average Hillforts Unseen</string>
-    <string name="statistics_position">You are Average</string>
+    <string name ="statistics_class_unseen">Average Hillforts Unseen: </string>
+    <string name="statistics_position">You are above/below average</string>
 </resources>

@@ -12,6 +12,7 @@ interface HillfortStore {
     fun totalHillforts(userId: Long): Int
     fun viewedHillforts(userId: Long): Int
     fun unseenHillforts(userId:Long): Int
-    fun classAverageViewed():Int
-    fun classAverageUnseen():Int
+    fun classAverageTotal(numOfUsers: Int):Int
+    fun classAverageViewed(numOfUsers:Int):Int
+    fun classAverageUnseen(numOfUsers: Int):Int
 }
