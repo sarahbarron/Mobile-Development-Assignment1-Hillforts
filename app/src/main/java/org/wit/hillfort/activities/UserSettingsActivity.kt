@@ -43,7 +43,7 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
             statisticsClassUnseen.setText("Average Unseen: "+app.hillforts.classAverageUnseen())
             if(userViewed>=classViewed){ statisticsUserPosition.setText("Keep up the good work!!")}
             else {
-                statisticsUserPosition.setText("Below average! Its time to catch up")
+                statisticsUserPosition.setText("You are below average! It might be time to catch up")
                 statisticsUserPosition.setTextColor(RED)
             }
         }

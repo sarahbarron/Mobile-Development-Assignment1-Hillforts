@@ -142,15 +142,19 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
 //    The average number of hillforts the class has viewed
     override fun classAverageViewed():Int{
         var totalViewed = 0
+
         for (hillfort in hillforts)
         {
+            info("class average hillfort $hillfort" )
             if(hillfort.visited){
+                info("class totalUnseen: $totalViewed")
                 totalViewed++
             }
         }
-        var averageViewed = totalViewed/hillforts.size
-        info("Average class viewed: $averageViewed")
+        var averageViewed = hillforts.size/totalViewed
+    info("$totalViewed /"+hillforts.size+" = $averageViewed")
         return averageViewed
+
     }
 
 //    The average number of hillforts the class still has to view
@@ -158,12 +162,15 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         var totalUnseen = 0
         for (hillfort in hillforts)
         {
+            info("class average hillfort $hillfort" )
             if(!hillfort.visited){
                 totalUnseen++
+                info("class totalUnseen: $totalUnseen")
             }
         }
-        var averageUnseen = totalUnseen/hillforts.size
-        info("Average class unseen: $averageUnseen")
+
+        var averageUnseen = hillforts.size/totalUnseen
+        info("$totalUnseen /"+hillforts.size+" = $averageUnseen")
         return averageUnseen
     }
 
