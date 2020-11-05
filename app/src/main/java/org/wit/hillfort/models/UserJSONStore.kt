@@ -19,7 +19,7 @@ fun generateRandomUserId(): Long {
     return Random().nextLong()
 }
 
-
+// Json store for users
 class UserJSONStore : UserStore, AnkoLogger {
 
     val context: Context
@@ -33,11 +33,12 @@ class UserJSONStore : UserStore, AnkoLogger {
         }
     }
 
-    //    Return a list of all user
+    //    Return a list of all users
     override fun findAll(): MutableList<UserModel> {
         return users
     }
 
+    // find one user
     override fun findOne(user: UserModel): UserModel{
         var foundUser: UserModel? = users.find{ p -> p.id == user.id }
         if(foundUser != null) {
@@ -46,6 +47,7 @@ class UserJSONStore : UserStore, AnkoLogger {
         return user
     }
 
+    // check if a username is alreadey registered
     override fun isUsernameRegistered(username: String): Boolean{
         val foundUser: UserModel? = users.find{ p -> p.username == username }
         if (foundUser != null)
@@ -77,11 +79,13 @@ class UserJSONStore : UserStore, AnkoLogger {
     }
 
 
+    // delete a user
     override fun delete(user: UserModel) {
         users.remove(user)
         userSerialize()
     }
 
+    // authenticate a user on login
     override fun authenticate(user: UserModel):UserModel {
         var foundUser: UserModel? = users.find{ p -> p.username == user.username }
         if(foundUser != null) {

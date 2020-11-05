@@ -6,6 +6,7 @@ import org.jetbrains.anko.info
 import org.wit.hillfort.models.*
 
 
+// Main App - retrieve both hillforts and users from the JSON stores
 class MainApp : Application(), AnkoLogger {
 
     lateinit var hillforts: HillfortStore

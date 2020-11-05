@@ -94,12 +94,33 @@
                 <EditText
                     android:id="@+id/hillfortNotes"
                     android:hint="@string/notes_input"
-                    android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
                     android:inputType="text|textMultiLine"
                     android:gravity="top"
-                    android:padding="8dp"/>
+                    android:padding="8dp"
+                    />
+                <TextView
+                    android:id="@+id/hillfortLat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/hillfort_lat"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/hillfortLng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/hillfort_lng"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"/>
 
                 <Button
                     android:id="@+id/hillfortLocation"

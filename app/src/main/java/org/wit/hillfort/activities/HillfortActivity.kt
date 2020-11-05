@@ -55,7 +55,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
 
         if (intent.hasExtra("hillfort_edit")) {
             //        Create a Linear layout manager & tell the recyclerView to use this layout manager
-
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
 
@@ -64,13 +63,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
             hillfortNotes.setText(hillfort.notes)
+            hillfortLat.setText("Lat: "+hillfort.lat)
+            hillfortLng.setText("Lng: "+hillfort.lng)
             btnAdd.setText(R.string.save_hillfort)
             loadHillfort()
 
             if (hillfort.visited){
                 visitedHillfort.isChecked = true
             }
-
         }
 
         chooseImage.setOnClickListener {
@@ -210,6 +210,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                     hillfort.lat = location.lat
                     hillfort.lng = location.lng
                     hillfort.zoom = location.zoom
+                    hillfortLat.setText("Lat: "+hillfort.lat)
+                    hillfortLng.setText("Lng: "+hillfort.lng)
+
                 }
             }
             DELETE_IMAGE->{

@@ -13,14 +13,15 @@ import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
 import org.wit.hillfort.models.UserModel
 
+// Activity to view an image & delete an image
 class ImageActivity: AppCompatActivity(), AnkoLogger {
 
     lateinit var app: MainApp
     var user = UserModel()
     var image = ""
     var hillfort = HillfortModel()
-    override fun onCreate(savedInstanceState: Bundle?){
 
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
@@ -28,17 +29,25 @@ class ImageActivity: AppCompatActivity(), AnkoLogger {
         setSupportActionBar(toolbarImage)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         app = application as MainApp
+
+        // retrieve the user from the intent
         if(intent.hasExtra("user")){
             user = intent.extras?.getParcelable("user")!!
         }
+
+        // retrieve the image and hillfort from the intent
        if(intent.hasExtra("image") && intent.hasExtra("hillfort")) {
+
            image = intent.extras?.getString("image")!!
            hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort")!!
+
+           // create & set the bitmap with the image
            var bitmap = readImageFromPath(this, image)
            singleHillfortImage.setImageBitmap(bitmap)
 
+           // listener for click on the delete image button
+           // delete the image
            btnImageDelete.setOnClickListener(){
                 app.hillforts.deleteImage(hillfort.copy(), image)
                 finish()
@@ -46,14 +55,12 @@ class ImageActivity: AppCompatActivity(), AnkoLogger {
        }
     }
 
-//       Functions needed to return the user to the HillfortListActivity after the Up navigation is pressed
+    //  Functions needed to return the user and the hillfort to the HillfortListActivity after the Up navigation is pressed
     override fun onPrepareSupportNavigateUpTaskStack(builder: TaskStackBuilder) {
         super.onPrepareSupportNavigateUpTaskStack(builder)
         builder.editIntentAt(builder.intentCount - 1)?.putExtra("hillfort_edit", hillfort)?.putExtra("user",user)
     }
     override fun supportShouldUpRecreateTask(targetIntent: Intent): Boolean {
-        info("Image: supportShouldUpRecreateTask")
         return true
     }
 }
-

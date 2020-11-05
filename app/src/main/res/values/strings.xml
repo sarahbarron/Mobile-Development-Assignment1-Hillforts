@@ -49,4 +49,6 @@
     <string name ="statistics_class_viewed">Average Hillforts Viewed: </string>
     <string name ="statistics_class_unseen">Average Hillforts Unseen: </string>
     <string name="statistics_position">You are above/below average</string>
+    <string name="hillfort_lat">Location Lat</string>
+    <string name="hillfort_lng">Location Lng</string>
 </resources>
