@@ -1,20 +1,22 @@
 package org.wit.hillfort.activities
 
+import android.graphics.Color.RED
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.UserModel
 
+
 class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
     var user = UserModel()
     lateinit var app : MainApp
 
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -29,6 +31,21 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
             user = loadUser()
             settingsUsername.setText(user.username)
             settingsPassword.setText(user.password)
+
+//            statistics
+//            User statistics
+            val userViewed = app.hillforts.totalHillforts(user.id)
+            statisticsHillfortsTotal.setText("Total: $userViewed")
+            statisticsHillfortsViewed.setText("Viewed: "+app.hillforts.viewedHillforts(user.id))
+            statisticsHillfortsUnseen.setText("Unseen: "+app.hillforts.unseenHillforts(user.id))
+            val classViewed = app.hillforts.classAverageViewed()
+            statisticsClassViewed.setText("Average Viewed: $classViewed")
+            statisticsClassUnseen.setText("Average Unseen: "+app.hillforts.classAverageUnseen())
+            if(userViewed>=classViewed){ statisticsUserPosition.setText("Keep up the good work!!")}
+            else {
+                statisticsUserPosition.setText("Below average! Its time to catch up")
+                statisticsUserPosition.setTextColor(RED)
+            }
         }
 
 //        Update user details
@@ -64,7 +81,7 @@ class UserSettingsActivity: AppCompatActivity(), AnkoLogger {
         return super.onCreateOptionsMenu(menu)
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.item_settingsCancel -> {
                 finish()
             }

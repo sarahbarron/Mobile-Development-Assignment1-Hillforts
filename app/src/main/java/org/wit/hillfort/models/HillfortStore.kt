@@ -9,4 +9,9 @@ interface HillfortStore {
     fun deleteImage(hillfort: HillfortModel, image: String)
     fun findOne(hillfort: HillfortModel): HillfortModel
     fun deleteUserHillforts(userId: Long)
+    fun totalHillforts(userId: Long): Int
+    fun viewedHillforts(userId: Long): Int
+    fun unseenHillforts(userId:Long): Int
+    fun classAverageViewed():Int
+    fun classAverageUnseen():Int
 }

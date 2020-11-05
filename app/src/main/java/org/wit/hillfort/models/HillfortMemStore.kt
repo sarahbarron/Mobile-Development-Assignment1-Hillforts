@@ -70,4 +70,67 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
         foundHillfort?.images?.remove(image)
     }
+
+    //    Statistics
+
+    //    Total number of hillforts a user has
+    override fun totalHillforts(userId: Long): Int{
+        val total = findAll(userId).size
+        info("Total user hillforts: $total")
+        return total
+    }
+
+    //    Total number of hillforts the user has viewed
+    override fun viewedHillforts(userId: Long): Int{
+        val foundHillforts = findAll(userId)
+        var total = 0
+        for (hillfort in foundHillforts)
+        {
+            if (hillfort.visited) {
+                total++
+            }
+        }
+        info("Average user visited: $total")
+        return total
+    }
+
+    //  Total number of hillforts the user still has to view
+    override fun unseenHillforts(userId:Long): Int{
+        val total = totalHillforts(userId) - viewedHillforts(userId)
+        info("Average user unseen: $total")
+        return total
+    }
+
+    //    The average number of hillforts the class has viewed
+    override fun classAverageViewed():Int{
+        var totalViewed = 0
+        for (hillfort in hillforts)
+        {
+            if(hillfort.visited)
+            {
+                totalViewed++
+            }
+        }
+        var averageViewed =0
+        if(hillforts.size>0) {
+            averageViewed = totalViewed / hillforts.size
+        }
+        info("Average class viewed: $averageViewed")
+        return averageViewed
+    }
+
+    //    The average number of hillforts the class still has to view
+    override fun classAverageUnseen():Int{
+        var totalUnseen = 0
+        for (hillfort in hillforts)
+        {
+            if(!hillfort.visited) totalUnseen++
+        }
+        var averageUnseen = 0
+        if (hillforts.size >0){
+            totalUnseen/hillforts.size
+        }
+        info("Average class unseen: $averageUnseen")
+        return averageUnseen
+    }
 }
