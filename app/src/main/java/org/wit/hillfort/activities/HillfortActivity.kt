@@ -121,7 +121,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                 location.lng = hillfort.lng
                 location.zoom = hillfort.zoom
             }
-            startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
+            startActivityForResult(intentFor<MapActivity>().putExtra("location", location).putExtra("user", user), LOCATION_REQUEST)
         }
     }
 
@@ -156,10 +156,13 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
         if (hillfort.images.size > 0 && hillfort.images != null) {
             if(hillfort.images.size<4)
             {
+
+                imageMessage.setText("Click on images to view or delete")
                 chooseImage.setText(R.string.add_four_hillfort_image)
             }
             else{
                 chooseImage.setText(R.string.max_hillfort_images)
+                imageMessage.setText(" ")
             }
         }
     }
@@ -193,6 +196,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             IMAGE_REQUEST -> {
+                user = intent.extras?.getParcelable<UserModel>("user")!!
                 if (data != null) {
                     hillfort.images.add(data.getData().toString())
                     if(hillfort.images.size < 4) {
@@ -205,6 +209,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                 }
             }
             LOCATION_REQUEST -> {
+                user = intent.extras?.getParcelable<UserModel>("user")!!
                 if (data != null) {
                     val location = data.extras?.getParcelable<Location>("location")!!
                     hillfort.lat = location.lat
@@ -215,6 +220,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                 }
             }
             DELETE_IMAGE->{
+                user = intent.extras?.getParcelable<UserModel>("user")!!
                 loadHillfort()
             }
         }

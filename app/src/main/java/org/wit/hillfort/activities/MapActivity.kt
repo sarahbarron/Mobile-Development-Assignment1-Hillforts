@@ -12,18 +12,20 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_image.*
 import org.wit.hillfort.R
 import org.wit.hillfort.models.Location
+import org.wit.hillfort.models.UserModel
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap
     var location = Location()
-
+    var user = UserModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
         // extracts the hillforts location
         location = intent.extras?.getParcelable<Location>("location")!!
+        user = intent.extras?.getParcelable<UserModel>("user")!!
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -65,7 +67,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarker
 
     override fun onBackPressed() {
         val resultIntent = Intent()
-        resultIntent.putExtra("location", location)
+        resultIntent.putExtra("location", location).putExtra("user", user)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
         super.onBackPressed()

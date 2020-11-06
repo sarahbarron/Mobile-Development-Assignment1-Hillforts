@@ -27,21 +27,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleTextColor="@color/colorPrimary"
-             />
+                />
         </com.google.android.material.appbar.AppBarLayout>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> release/0.1.3
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/appBarLayout"
             android:layout_marginTop="10dp"
             android:fillViewport="true">
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,15 +46,13 @@
                 <TextView
                     android:id="@+id/headingHillfortName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15px"
+                    android:layout_height="60dp"
+                    android:text="@string/heading_hillfort_name"
                     android:background="@color/colorAccent"
-                    android:padding="10dp"
-                    android:textAlignment="center"
-<<<<<<< HEAD
                     android:textColor="@color/colorPrimary"
-                    android:textSize="25dp" />
-=======
+                    android:textSize="25dp"
+                    android:padding="5px"
+                    android:textAlignment="center"
                     />
                 <TextView
                     android:id="@+id/dateCreated"
@@ -70,7 +63,6 @@
                     android:padding="8dp"
                     android:textSelectHandleLeft="@string/date_created"
                     />
->>>>>>> release/0.1.3
 
                 <EditText
                     android:id="@+id/hillfortName"
@@ -85,11 +77,6 @@
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
-<<<<<<< HEAD
-
-
-=======
->>>>>>> release/0.1.3
 
                 <EditText
                     android:id="@+id/hillfortDescription"
@@ -160,8 +147,15 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
-                <!-- Button to add a hillfort-->
-
+                <TextView
+                    android:id="@+id/imageMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/image_message"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewImages"
                     android:layout_width="match_parent"
@@ -169,11 +163,8 @@
                     android:scrollbars="vertical"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-<<<<<<< HEAD
-=======
-<!-- Button to add a hillfort-->
+                <!-- Button to add a hillfort-->
 
->>>>>>> release/0.1.3
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
@@ -204,10 +195,6 @@
             </LinearLayout>
         </ScrollView>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> release/0.1.3
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
