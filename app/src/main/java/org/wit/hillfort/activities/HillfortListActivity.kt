@@ -6,12 +6,15 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.jetbrains.anko.*
 import org.wit.hillfort.R
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
 import org.wit.hillfort.models.UserModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 // Activity to show a list of hillforts
 class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
@@ -89,9 +92,15 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener, AnkoLogger{
         if(isChecked)
         {
             app.hillforts.visited(hillfort, true)
+            val simpleDateFormat = SimpleDateFormat("yyy.MM.dd 'at' HH:mm:ss")
+            val currentDateAndTime: String = simpleDateFormat.format(Date())
+            hillfort.date = currentDateAndTime
+
+
         }
         else{
             app.hillforts.visited(hillfort, false)
+            hillfort.date = ""
         }
 
     }

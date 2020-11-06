@@ -58,7 +58,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
 
-            dateCreated.setText("Date Created: "+hillfort.date)
+            dateVisited.setText("Date Visited: "+hillfort.date)
             headingHillfortName.setText(hillfort.name)
             hillfortName.setText(hillfort.name)
             hillfortDescription.setText(hillfort.description)
@@ -95,9 +95,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                     app.hillforts.update(hillfort.copy())
                     info("Edit: $hillfort")
                 } else {
-                    val simpleDateFormat = SimpleDateFormat("yyy.MM.dd 'at' HH:mm:ss")
-                    val currentDateAndTime: String = simpleDateFormat.format(Date())
-                    hillfort.date = currentDateAndTime
                     if (visitedHillfort.isChecked){
                         hillfort.visited = true
                     }
@@ -133,8 +130,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger, ImageListener {
                 R.id.visitedHillfort -> {
                     if (checked) {
                         app.hillforts.visited(hillfort, true)
+                        val simpleDateFormat = SimpleDateFormat("yyy.MM.dd 'at' HH:mm:ss")
+                        val currentDateAndTime: String = simpleDateFormat.format(Date())
+                        hillfort.date = currentDateAndTime
+                        dateVisited.setText("Date Visited: $currentDateAndTime")
                     } else {
                         app.hillforts.visited(hillfort, false)
+                        hillfort.date = ""
+                        dateVisited.setText("Date Visited: ")
                     }
                 }
             }
